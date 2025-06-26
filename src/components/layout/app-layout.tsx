@@ -24,7 +24,7 @@ export default async function AppLayout({ children }: Props) {
       <Sidebar side="left" variant="sidebar" collapsible="icon">
         <SidebarHeader>
           <Button variant="ghost" className="h-10 w-full justify-start gap-3 px-2">
-            <Sparkles className="size-6 text-primary" />
+            <Sparkles className="size-6 text-logo" />
             <span className="font-headline text-lg font-semibold text-sidebar-foreground hover:text-black">
               RuleMaster AI
             </span>
