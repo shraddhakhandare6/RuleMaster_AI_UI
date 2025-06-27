@@ -9,7 +9,7 @@ import {
   SidebarInset,
   SidebarRail,
 } from "@/components/ui/sidebar"
-import { Sparkles } from "lucide-react"
+import { Bot } from "lucide-react"
 import { Nav } from "./nav"
 import { Button } from "../ui/button"
 import { ProfileButton } from "./profile-button"
@@ -24,7 +24,7 @@ export default async function AppLayout({ children }: Props) {
       <Sidebar side="left" variant="sidebar" collapsible="icon">
         <SidebarHeader>
           <Button variant="ghost" className="h-10 w-full justify-start gap-3 px-2">
-            <Sparkles className="size-6 text-primary" />
+            <Bot className="size-6 text-logo" />
             <span className="font-headline text-lg font-semibold text-sidebar-foreground hover:text-black">
               RuleMaster AI
             </span>
