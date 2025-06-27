@@ -51,7 +51,6 @@ export function KeycloakProvider({ children }: { children: ReactNode }) {
         setInitialized(true);
       })
       .catch(error => {
-        console.error('Keycloak initialization failed:', error);
         const detailedError = new Error("Failed to connect to Keycloak. Please ensure your Keycloak server is running and accessible. Also, check that the 'Valid Redirect URIs' in your Keycloak client settings includes your application's URL (e.g., http://localhost:9002/*).");
         setInitError(detailedError);
         setInitialized(true);
