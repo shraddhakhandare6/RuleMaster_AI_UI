@@ -26,9 +26,8 @@
     --chart-1: 180 100% 30%;
     --chart-2: 203 94% 30%;
     --chart-3: 275 95% 40%;
-    --chart-4: 180 100% 40%;
-    --chart-5: 203 94% 40%;
-    --radius: 0.5rem;
+    --chart-4: 300 80% 40%;
+    --chart-5: 180 100% 40%;
     /* Light theme sidebar */
     --sidebar-background: 0 0% 98%;
     --sidebar-foreground: 0 0% 6%;
@@ -52,8 +51,8 @@
     --secondary-foreground: 0 0% 88%;
     --muted: 0 0% 15%;
     --muted-foreground: 0 0% 60%;
-    --accent: 275 95% 20%;
-    --accent-foreground: 275 95% 76%;
+    --accent: 275 95% 76%;
+    --accent-foreground: 275 95% 20%;
     --destructive: 300 100% 50%;
     --destructive-foreground: 0 0% 6%;
     --border: 0 0% 15%;
