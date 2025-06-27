@@ -33,9 +33,9 @@ export default function DashboardPage() {
                 className="rounded-lg object-cover"
               />
             </div>
-            <p className="mt-4 text-sm text-muted-foreground">
+            {/* <p className="mt-4 text-sm text-muted-foreground">
               {t.dashboard.aiEngine.description}
-            </p>
+            </p> */}
           </CardContent>
         </Card>
       </div>
