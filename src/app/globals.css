@@ -10,7 +10,7 @@
     --card-foreground: 0 0% 6%;
     --popover: 0 0% 98%;
     --popover-foreground: 0 0% 6%;
-    --primary: 180 100% 30%;
+    --primary: 203 94% 30%;
     --primary-foreground: 0 0% 100%;
     --secondary: 0 0% 95%;
     --secondary-foreground: 0 0% 10%;
@@ -22,7 +22,7 @@
     --destructive-foreground: 0 0% 100%;
     --border: 0 0% 90%;
     --input: 0 0% 90%;
-    --ring: 180 100% 30%;
+    --ring: 203 94% 30%;
     --radius: 0.5rem;
     --chart-1: 180 100% 30%;
     --chart-2: 203 94% 30%;
@@ -32,12 +32,12 @@
     /* Light theme sidebar */
     --sidebar-background: 0 0% 98%;
     --sidebar-foreground: 0 0% 6%;
-    --sidebar-primary: 180 100% 30%;
+    --sidebar-primary: 203 94% 30%;
     --sidebar-primary-foreground: 0 0% 100%;
     --sidebar-accent: 203 94% 90%;
     --sidebar-accent-foreground: 203 94% 30%;
     --sidebar-border: 0 0% 90%;
-    --sidebar-ring: 180 100% 30%;
+    --sidebar-ring: 203 94% 30%;
   }
   .dark {
     --background: 0 0% 6%; /* Jet Black */
@@ -46,7 +46,7 @@
     --card-foreground: 0 0% 88%;
     --popover: 0 0% 10%;
     --popover-foreground: 0 0% 88%;
-    --primary: 180 100% 50%; /* Neon Cyan */
+    --primary: 203 94% 57%; /* Aqua Blue */
     --primary-foreground: 0 0% 6%; /* Black Currant */
     --secondary: 0 0% 15%;
     --secondary-foreground: 0 0% 88%;
@@ -67,7 +67,7 @@
     /* Dark theme sidebar */
     --sidebar-background: 0 0% 6%;
     --sidebar-foreground: 0 0% 88%;
-    --sidebar-primary: 180 100% 50%;
+    --sidebar-primary: 203 94% 57%;
     --sidebar-primary-foreground: 0 0% 6%;
     --sidebar-accent: 203 94% 57%; /* Aqua Blue */
     --sidebar-accent-foreground: 0 0% 6%;
