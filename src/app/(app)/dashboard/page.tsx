@@ -1,72 +1,53 @@
 
 "use client";
 
-import "@/copilot-sidebar.css";
-
 import { PageHeader } from "@/components/layout/page-header";
 import { StatsCards } from "@/components/dashboard/stats-cards";
 import { RecentActivity } from "@/components/dashboard/recent-activity";
 import { CopilotKit } from "@copilotkit/react-core";
-import { CopilotSidebar } from "@copilotkit/react-ui";
 import { useCopilotAction } from "@copilotkit/react-core";
-import { useState } from "react";
 import { useTranslations } from "@/hooks/use-translations";
-import { INSTRUCTIONS } from "../../instructions";
+import { CopilotChat } from "@/components/dashboard/copilot-chat";
 
 export default function DashboardPage() {
   const t = useTranslations();
   
   return (
-    <CopilotKit runtimeUrl="api/copilotkit">
+    <CopilotKit
+      runtimeUrl="/api/copilotkit"
+      transcribeAudioUrl="/api/transcribe"
+      textToSpeechUrl="/api/tts"
+    >
       <DashboardContent t={t} />
     </CopilotKit>
   );
 }
 
-function DashboardContent({ t }: { t: any }) {
-  const [suggestions] = useState([
-    "Create a spreadsheet of top markets",
-    "Generate revenue report for Q3",
-    "Show client acquisition metrics",
-    "Compare year-over-year growth",
-  ]);
-
+function DashboardContent({ t }: { t: any; }) {
   useCopilotAction({
-    name: "createSpreadsheet",
-    description: "Create a new spreadsheet",
+    name: "findRules",
+    description: "Find rules matching a query.",
     parameters: [
-      { name: "rows", type: "object[]", description: "Rows of the spreadsheet" },
-      { name: "title", type: "string", description: "Title of the spreadsheet" },
+      { name: "query", type: "string", description: "The search query for rules." },
     ],
-    handler: ({ rows, title }) => {
-      console.log("Spreadsheet created with title:", title);
+    handler: ({ query }) => {
+      // In a real app, you would implement the logic to find and display rules.
+      // For this demo, we'll just log it.
+      console.log(`Finding rules with query: "${query}"`);
+      alert(`Finding rules for query: "${query}". This is a demo action and is not fully implemented.`);
     },
   });
 
   return (
-    <div className="space-y-6">
-      <PageHeader title={t.dashboard.title} />
-
-      <div className="grid grid-cols-1 gap-6 lg:grid-cols-3">
-        <div className="lg:col-span-2 space-y-6">
-          <StatsCards />
-          <RecentActivity />
-        </div>
-
-        <div className="h-full">
-          <CopilotSidebar
-            className="copilot-sidebar-custom"
-            labels={{
-              title: "Dashboard Assistant",
-              initial: "Hello! I'm your AI assistant. How can I help with your dashboard today?",
-            }}
-            defaultOpen={true}
-            clickOutsideToClose={false}
-            suggestions={suggestions}
-            instructions={INSTRUCTIONS}
-          />
-        </div>
+    <div className="flex flex-col lg:flex-row gap-8">
+      <div className="flex-1 space-y-6">
+        <PageHeader title={t.dashboard.title} />
+        <StatsCards />
+        <RecentActivity />
       </div>
+      <aside className="w-full lg:w-[400px] xl:w-[450px] shrink-0">
+        <CopilotChat />
+      </aside>
     </div>
   );
 }
