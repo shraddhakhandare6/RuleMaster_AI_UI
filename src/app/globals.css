@@ -30,13 +30,13 @@
     --chart-4: 300 80% 40%;
     --chart-5: 180 100% 40%;
     /* Light theme sidebar */
-    --sidebar-background: 0 0% 98%;
-    --sidebar-foreground: 0 0% 6%;
+    --sidebar-background: 222 53% 95%;
+    --sidebar-foreground: 222 53% 10%;
     --sidebar-primary: 203 94% 30%;
     --sidebar-primary-foreground: 0 0% 100%;
     --sidebar-accent: 203 94% 90%;
     --sidebar-accent-foreground: 203 94% 30%;
-    --sidebar-border: 0 0% 90%;
+    --sidebar-border: 222 53% 90%;
     --sidebar-ring: 203 94% 30%;
   }
   .dark {
@@ -65,13 +65,13 @@
     --chart-4: 300 100% 50%;
     --chart-5: 180 100% 70%;
     /* Dark theme sidebar */
-    --sidebar-background: 0 0% 12%;
+    --sidebar-background: 222 53% 10%;
     --sidebar-foreground: 0 0% 88%;
     --sidebar-primary: 203 94% 57%; /* Aqua Blue */
     --sidebar-primary-foreground: 0 0% 6%;
     --sidebar-accent: 300 100% 50%; /* Electric Magenta */
     --sidebar-accent-foreground: 0 0% 6%;
-    --sidebar-border: 0 0% 18%;
+    --sidebar-border: 222 53% 15%;
     --sidebar-ring: 180 100% 50%; /* Neon Cyan */
   }
 }
