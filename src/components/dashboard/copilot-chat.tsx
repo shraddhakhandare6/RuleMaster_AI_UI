@@ -6,19 +6,21 @@ import { FormEvent } from 'react'
 import { Mic, SendHorizontal, X } from 'lucide-react'
 
 export function CopilotChat() {
+  const copilotChat = useCopilotChat();
+
+  // If the essential functions aren't available, don't render the component.
+  // This can happen during server-side rendering or before the context is ready.
+  if (!copilotChat || !copilotChat.append || !copilotChat.setInput) {
+    return null;
+  }
+
   const { 
-    messages = [], 
+    messages,
     append, 
     input, 
     setInput, 
     isLoading 
-  } = useCopilotChat() || {};
-
-  // If the essential functions aren't available, don't render the component.
-  // This can happen during server-side rendering.
-  if (!append || !setInput) {
-    return null;
-  }
+  } = copilotChat;
 
   const suggestions = [
     'Suggest a new business rule for employee bonuses',
