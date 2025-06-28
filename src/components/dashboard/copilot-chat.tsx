@@ -6,7 +6,7 @@ import { FormEvent } from 'react'
 import { Mic, SendHorizontal, X } from 'lucide-react'
 
 export function CopilotChat() {
-  const { messages = [], append, input, setInput, isLoading } = useCopilotChat() || {};
+  const { messages = [], append, input, setInput, isLoading } = useCopilotChat() || {}
 
   const suggestions = [
     'Suggest a new business rule for employee bonuses',
@@ -16,7 +16,7 @@ export function CopilotChat() {
 
   const handleSubmit = (e: FormEvent) => {
     e.preventDefault()
-    if (!input?.trim() || isLoading) return
+    if (!input || !input.trim() || isLoading) return
     append?.({ role: 'user', content: input })
     setInput?.('')
   }
@@ -85,7 +85,7 @@ export function CopilotChat() {
               <button type="button" className="p-2 text-gray-500 hover:text-blue-500">
                 <Mic size={18} />
               </button>
-              <button type="submit" className="p-2 text-gray-500 hover:text-blue-500 disabled:text-gray-300 dark:disabled:text-gray-600" disabled={!input?.trim() || isLoading}>
+              <button type="submit" className="p-2 text-gray-500 hover:text-blue-500 disabled:text-gray-300 dark:disabled:text-gray-600" disabled={!input || !input.trim() || isLoading}>
                 <SendHorizontal size={18} />
               </button>
             </div>
