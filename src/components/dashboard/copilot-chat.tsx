@@ -6,12 +6,12 @@ import { Mic, SendHorizontal, X } from 'lucide-react'
 
 function ChatInterface() {
   const {
-    messages,
+    messages = [],
     append,
     input,
     setInput,
     isLoading
-  } = useCopilotChat();
+  } = useCopilotChat() || {};
 
   const suggestions = [
     'Suggest a new business rule for employee bonuses',
@@ -21,9 +21,9 @@ function ChatInterface() {
 
   const handleSubmit = (e: FormEvent) => {
     e.preventDefault();
-    if (!input || !input.trim() || isLoading) return;
+    if (!input || !input.trim() || isLoading || !append) return;
     append({ role: 'user', content: input });
-    setInput('');
+    setInput?.('');
   };
 
   return (
@@ -70,9 +70,9 @@ function ChatInterface() {
                   <button 
                       key={s}
                       onClick={() => {
-                        setInput(s);
-                        append({ role: 'user', content: s });
-                        setInput('');
+                        if (append) {
+                           append({ role: 'user', content: s });
+                        }
                       }}
                       className="w-full text-left px-3 py-1.5 text-sm bg-transparent border border-gray-300 dark:border-gray-600 rounded-md hover:bg-gray-100 dark:hover:bg-gray-800"
                   >
@@ -86,7 +86,7 @@ function ChatInterface() {
             <input
               type="text"
               value={input || ''}
-              onChange={(e) => setInput(e.target.value)}
+              onChange={(e) => setInput?.(e.target.value)}
               placeholder="Type a message..."
               className="w-full pl-4 pr-20 py-2.5 text-sm border border-gray-300 dark:border-gray-600 rounded-lg bg-gray-50 dark:bg-gray-900 focus:outline-none focus:ring-1 focus:ring-primary"
             />
