@@ -5,9 +5,8 @@ import "@/copilot-sidebar.css";
 import { PageHeader } from "@/components/layout/page-header";
 import { StatsCards } from "@/components/dashboard/stats-cards";
 import { RecentActivity } from "@/components/dashboard/recent-activity";
-import { CopilotKit } from "@copilotkit/react-core";
+import { CopilotKit, useCopilotAction } from "@copilotkit/react-core";
 import { CopilotSidebar, useCopilotChatSuggestions } from "@copilotkit/react-ui";
-import { useCopilotAction } from "@copilotkit/react-core";
 import { useTranslations } from "@/hooks/use-translations";
 import { INSTRUCTIONS } from "../../instructions";
 
@@ -15,11 +14,7 @@ export default function DashboardPage() {
   const t = useTranslations();
 
   return (
-    <CopilotKit
-      // These URLs are placeholders and would need to be implemented
-      // in a real application.
-      runtimeUrl="/api/copilotkit" 
-    >
+    <CopilotKit runtimeUrl="/api/copilotkit">
       <DashboardContent t={t} />
     </CopilotKit>
   );
