@@ -1,13 +1,13 @@
 
 .copilot-chatbot {
-    background-color: #f9fafb;
+    background-color: hsl(var(--card));
     border-radius: 1.5rem;
     box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
     display: flex;
     flex-direction: column;
     height: 70vh;
     overflow: hidden;
-    border: 1px solid #e5e7eb;
+    border: 1px solid hsl(var(--border));
 }
 
 .copilot-chat-header {
@@ -61,8 +61,8 @@
 }
 
 .copilot-sidebar-custom .copilot-message-assistant .copilot-message-content {
-    background: #e5e7eb;
-    color: #1f2937;
+    background-color: hsl(var(--muted));
+    color: hsl(var(--muted-foreground));
     border-radius: 1rem 1rem 1rem 0.25rem;
     padding: 0.75rem 1rem;
 }
@@ -70,7 +70,7 @@
 /* Input area styling */
 .copilot-sidebar-custom > div:last-of-type {
     padding: 1rem 1.5rem;
-    border-top: 1px solid #e5e7eb;
+    border-top: 1px solid hsl(var(--border));
 }
 
 .copilot-sidebar-custom .copilot-input-container {
@@ -80,8 +80,14 @@
 .copilot-sidebar-custom textarea.copilot-input {
     width: 100%;
     border-radius: 9999px;
-    border: 1px solid #d1d5db;
+    border: 1px solid hsl(var(--input));
+    background-color: hsl(var(--background));
+    color: hsl(var(--foreground));
     padding: 0.75rem 3rem 0.75rem 1rem;
+}
+
+.copilot-sidebar-custom textarea.copilot-input::placeholder {
+    color: hsl(var(--muted-foreground));
 }
 
 .copilot-sidebar-custom button[aria-label="Send"] {
@@ -109,11 +115,17 @@
 }
 
 .copilot-sidebar-custom .copilot-suggestion {
-    background: #f3f4f6;
-    border: 1px solid #e5e7eb;
-    color: #4b5563;
+    background-color: hsl(var(--muted));
+    border: 1px solid hsl(var(--border));
+    color: hsl(var(--muted-foreground));
     border-radius: 9999px;
     padding: 0.5rem 1rem;
     font-size: 0.875rem;
     cursor: pointer;
+    transition: background-color 0.2s, color 0.2s;
+}
+
+.copilot-sidebar-custom .copilot-suggestion:hover {
+    background-color: hsl(var(--accent));
+    color: hsl(var(--accent-foreground));
 }
