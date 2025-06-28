@@ -39,7 +39,7 @@ export default async function AppLayout({ children }: Props) {
       </Sidebar>
       <SidebarRail />
       <SidebarInset>
-        <header className="flex h-14 items-center gap-4 border-b border-zinc-800 bg-zinc-900 px-4 text-zinc-50 md:px-6">
+        <header className="flex h-14 items-center gap-4 border-b border-blue-900 bg-blue-950 px-4 text-zinc-50 md:px-6">
           <SidebarTrigger className="md:hidden" />
           <div className="flex-1" />
         </header>
