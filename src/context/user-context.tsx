@@ -1,8 +1,7 @@
 "use client";
 
-import { createContext, useContext, useState, ReactNode, useEffect } from 'react';
+import { createContext, useContext, useState, ReactNode } from 'react';
 import type { LanguageKey } from '@/lib/translations';
-import { useKeycloak } from './KeycloakProvider';
 
 type UserContextType = {
   firstName: string;
@@ -15,22 +14,18 @@ type UserContextType = {
 const UserContext = createContext<UserContextType | undefined>(undefined);
 
 export function UserProvider({ children }: { children: ReactNode }) {
-  const { keycloak, initialized } = useKeycloak();
-  const [firstName, setFirstName] = useState('User');
+  const [firstName, setFirstName] = useState('Admin');
   const [language, setLanguage] = useState<LanguageKey>('en');
 
-  useEffect(() => {
-    if (initialized && keycloak?.authenticated) {
-      keycloak.loadUserProfile().then((profile) => {
-        setFirstName(profile.firstName || 'User');
-      });
-    }
-  }, [initialized, keycloak]);
-  
   const logout = () => {
-    keycloak?.logout({ redirectUri: window.location.origin });
+    // This is a placeholder logout function.
+    // In a real app, this would handle token invalidation, etc.
+    console.log('User logged out');
+    // For now, we can just reset the name to a default.
+    setFirstName('Admin');
+    // Maybe redirect to a login page if one existed.
   };
-  
+
   return (
     <UserContext.Provider value={{ firstName, setFirstName, language, setLanguage, logout }}>
       {children}
