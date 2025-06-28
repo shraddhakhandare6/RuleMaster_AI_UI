@@ -6,7 +6,19 @@ import { FormEvent } from 'react'
 import { Mic, SendHorizontal, X } from 'lucide-react'
 
 export function CopilotChat() {
-  const { messages = [], append, input, setInput, isLoading } = useCopilotChat() || {}
+  const { 
+    messages = [], 
+    append, 
+    input, 
+    setInput, 
+    isLoading 
+  } = useCopilotChat() || {};
+
+  // If the essential functions aren't available, don't render the component.
+  // This can happen during server-side rendering.
+  if (!append || !setInput) {
+    return null;
+  }
 
   const suggestions = [
     'Suggest a new business rule for employee bonuses',
@@ -17,8 +29,8 @@ export function CopilotChat() {
   const handleSubmit = (e: FormEvent) => {
     e.preventDefault()
     if (!input || !input.trim() || isLoading) return
-    append?.({ role: 'user', content: input })
-    setInput?.('')
+    append({ role: 'user', content: input })
+    setInput('')
   }
   
   return (
@@ -64,7 +76,7 @@ export function CopilotChat() {
               {suggestions.map(s => (
                   <button 
                       key={s}
-                      onClick={() => setInput?.(s)}
+                      onClick={() => setInput(s)}
                       className="px-3 py-1.5 text-xs bg-white dark:bg-card border border-gray-200 dark:border-gray-700 rounded-full hover:bg-gray-100 dark:hover:bg-gray-800"
                   >
                       {s}
@@ -77,7 +89,7 @@ export function CopilotChat() {
             <input
               type="text"
               value={input || ''}
-              onChange={(e) => setInput?.(e.target.value)}
+              onChange={(e) => setInput(e.target.value)}
               placeholder="Type a message..."
               className="w-full pl-4 pr-20 py-2.5 text-sm border border-gray-300 dark:border-gray-600 rounded-full bg-white dark:bg-gray-900 focus:outline-none focus:ring-1 focus:ring-blue-500"
             />
