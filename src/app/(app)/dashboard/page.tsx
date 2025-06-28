@@ -1,85 +1,79 @@
+
 "use client";
 
-import "@/copilot-sidebar.css";
+import { CopilotKit, useCopilotChat } from "@copilotkit/react-core";
+import { CopilotSidebar } from "@copilotkit/react-ui";
+import { useState } from "react";
+import { INSTRUCTIONS } from "../../../app/instructions";
+import { SpreadsheetData } from "../../../app/types";
+import { sampleData, sampleData2 } from "../../../app/utils/sampleData";
+import Sidebar from "../../../components/copilot/Sidebar";
+import SingleSpreadsheet from "../../../components/copilot/SingleSpreadsheet";
+import { ThemeProvider } from "../../../components/copilot/ThemeProvider";
 
-import { PageHeader } from "@/components/layout/page-header";
-import { StatsCards } from "@/components/dashboard/stats-cards";
-import { RecentActivity } from "@/components/dashboard/recent-activity";
-import { CopilotKit, useCopilotAction } from "@copilotkit/react-core";
-import { CopilotSidebar, useCopilotChatSuggestions } from "@copilotkit/react-ui";
-import { useTranslations } from "@/hooks/use-translations";
-import { INSTRUCTIONS } from "../../instructions";
+const App = () => {
 
-export default function DashboardPage() {
-  const t = useTranslations();
-
-  return (
-    <CopilotKit runtimeUrl="/api/copilotkit">
-      <DashboardContent t={t} />
-    </CopilotKit>
-  );
-}
-
-function DashboardContent({ t }: { t: any }) {
-  // A placeholder action to make the assistant interactive.
-  useCopilotAction({
-    name: "analyzeRevenue",
-    description: "Analyzes revenue trends for a given period.",
-    parameters: [
-      { name: "quarter", type: "string", description: "The quarter to analyze (e.g., 'last quarter')." }
-    ],
-    handler: async ({ quarter }) => {
-      alert(`Analyzing revenue for ${quarter}...`);
+  const [spreadsheets, setSpreadsheets] = useState<SpreadsheetData[]>([
+    {
+      title: "Sample",
+      rows: sampleData,
     },
-  });
-  
-  // Suggestions that will appear in the UI, as seen in the image.
-  useCopilotChatSuggestions({
-    initial: [
-      "Compare client performance metrics",
-      "Generate an executive summary report",
-      "Identify clients with expiring contracts",
-      "Show me the highest value projects",
-    ]
-  });
+    {
+      title: "Projects",
+      rows: sampleData2,
+    },
+    {
+      title: "Third",
+      rows: [
+        [
+          { value: "A" },
+          { value: "B" },
+          { value: "C" },
+        ],
+        [
+          { value: "1" },
+          { value: "2" },
+          { value: "3" },
+        ],
+      ]
+    }
+  ]);
+  const [selectedSpreadsheetIndex, setSelectedSpreadsheetIndex] =
+    useState<number>(0);
 
   return (
-    <div className="space-y-6">
-      <PageHeader title={t.dashboard.title} />
-
-      <div className="grid grid-cols-1 gap-6 lg:grid-cols-3">
-        <div className="lg:col-span-2 space-y-6">
-          <StatsCards />
-          <RecentActivity />
+    <ThemeProvider>
+      <CopilotKit runtimeUrl="/api/copilotkit/">
+        <div className="flex h-screen">
+          <Sidebar
+            spreadsheets={spreadsheets}
+            selectedSpreadsheetIndex={selectedSpreadsheetIndex}
+            setSelectedSpreadsheetIndex={setSelectedSpreadsheetIndex}
+          />
+          <SingleSpreadsheet
+            spreadsheet={spreadsheets[selectedSpreadsheetIndex]}
+            setSpreadsheet={(spreadsheet: SpreadsheetData) => {
+              const newSpreadsheets = [...spreadsheets];
+              newSpreadsheets[selectedSpreadsheetIndex] = spreadsheet;
+              setSpreadsheets(newSpreadsheets);
+            }}
+            spreadSheets={spreadsheets}
+            selectedSpreadsheetIndex={selectedSpreadsheetIndex}
+            setSelectedSpreadsheetIndex={setSelectedSpreadsheetIndex}
+          />
         </div>
-        
-        <div className="lg:col-span-1">
-          {/* 
-            This is a custom wrapper to achieve the look from the image.
-            The actual CopilotSidebar component is inside.
-          */}
-          <div className="copilot-chatbot">
-              <div className="copilot-chat-header">
-                  <div className="copilot-chat-avatar">AI</div>
-                  <div>
-                    <h2 className="title">Dashboard</h2>
-                    <h2 className="title">Assistant</h2>
-                  </div>
-              </div>
-              <CopilotSidebar
-                  instructions={INSTRUCTIONS}
-                  labels={{
-                      initial: "Hello! I'm your AI assistant. How can I help with your dashboard today?",
-                      placeholder: "Type your message..."
-                  }}
-                  defaultOpen={true}
-                  clickOutsideToClose={false}
-                  className="copilot-sidebar-custom"
-              >
-              </CopilotSidebar>
-          </div>
-        </div>
-      </div>
-    </div>
+        <CopilotSidebar
+          instructions={INSTRUCTIONS}
+          defaultOpen={true}
+          labels={{
+            title: "Spreadsheet Copilot",
+            initial: "Hi! I can help you create and edit spreadsheets.",
+          }}
+        >
+        </CopilotSidebar>
+      </CopilotKit>
+    </ThemeProvider>
   );
-}
+};
+
+export default App;
