@@ -64,14 +64,7 @@ function DashboardContent({ t }: { t: any }) {
             clickOutsideToClose={false}
             suggestions={suggestions}
             instructions={INSTRUCTIONS}
-          >
-            <div className="copilot-footer">
-              <h4>Need help?</h4>
-              <p>
-                <a href="#">Documentation</a> • <a href="#">Tutorials</a> • <a href="#">Contact Support</a>
-              </p>
-            </div>
-          </CopilotSidebar>
+          />
         </div>
       </div>
     </div>

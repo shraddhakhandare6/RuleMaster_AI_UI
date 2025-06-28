@@ -18,7 +18,7 @@
 
 /* Header styling */
 .copilot-sidebar-custom .copilot-header {
-  background: linear-gradient(90deg, #8B5CF6 0%, #EC4899 100%);
+  background: linear-gradient(90deg, hsl(var(--primary)) 0%, hsl(var(--accent)) 100%);
   padding: 1rem 1.5rem;
   display: flex;
   align-items: center;
@@ -29,14 +29,14 @@
   display: flex;
   align-items: center;
   gap: 0.75rem;
-  color: white;
+  color: hsl(var(--primary-foreground));
   font-size: 1.125rem; /* text-lg */
   font-weight: 600; /* font-semibold */
 }
 
 .copilot-sidebar-custom .copilot-header-avatar {
-  background-color: white;
-  color: #7c3aed; /* A purple color */
+  background-color: hsl(var(--primary-foreground));
+  color: hsl(var(--primary));
   border-radius: 9999px;
   width: 2.5rem;
   height: 2.5rem;
@@ -48,7 +48,7 @@
 }
 
 .copilot-sidebar-custom .copilot-header button {
-  color: white;
+  color: hsl(var(--primary-foreground));
   opacity: 0.8;
   transition: opacity 0.2s;
 }
@@ -66,8 +66,8 @@
 
 /* AI assistant message styling */
 .copilot-sidebar-custom .copilot-message-assistant .copilot-message-content {
-  background-color: #6366f1; /* Indigo 500 */
-  color: white;
+  background-color: hsl(var(--primary));
+  color: hsl(var(--primary-foreground));
   border-radius: 1rem 1rem 1rem 0.25rem;
   padding: 0.75rem 1rem;
   max-width: 85%;
@@ -118,14 +118,14 @@
   right: 0.5rem;
   top: 50%;
   transform: translateY(-50%);
-  background-color: #6366f1;
-  color: white;
+  background-color: hsl(var(--primary));
+  color: hsl(var(--primary-foreground));
   border-radius: 0.5rem;
   width: 2.5rem;
   height: 2.5rem;
 }
 .copilot-sidebar-custom .copilot-send-button:hover {
-  background-color: #4f46e5;
+  background-color: hsl(var(--primary) / 0.9);
 }
 
 
