@@ -5,21 +5,7 @@ import { FormEvent, useEffect, useState } from 'react'
 import { Mic, SendHorizontal, X } from 'lucide-react'
 
 function ChatInterface() {
-  const copilotChat = useCopilotChat();
-
-  // Guard against the hook not being fully initialized.
-  // We check for `messages` specifically as that's what causes the crash.
-  if (!copilotChat || !copilotChat.messages) {
-    return null;
-  }
-
-  const {
-    messages,
-    append,
-    input,
-    setInput,
-    isLoading
-  } = copilotChat;
+  const { messages, append, input, setInput, isLoading } = useCopilotChat();
 
   const suggestions = [
     'Suggest a new business rule for employee bonuses',
@@ -37,7 +23,7 @@ function ChatInterface() {
   return (
     <div className="bg-white dark:bg-card border border-gray-200 dark:border-gray-700 rounded-xl shadow-lg flex flex-col h-full max-h-[calc(100vh-12rem)]">
       <div className="p-4 border-b border-gray-200 dark:border-gray-700 flex justify-between items-center shrink-0">
-        <h2 className="text-base font-semibold text-gray-800 dark:text-gray-200">CopilotKit</h2>
+        <h2 className="text-base font-semibold text-gray-800 dark:text-gray-200">Copilot</h2>
         <button className="text-gray-500 hover:text-gray-800 dark:hover:text-gray-200">
           <X size={20} />
         </button>
