@@ -8,13 +8,6 @@ import { Mic, SendHorizontal, X } from 'lucide-react'
 function ChatInterface() {
   const copilotChat = useCopilotChat()
 
-  // This prevents a crash on the client if the hook isn't ready immediately.
-  // We check for `messages` specifically because that's what's causing the crash.
-  if (!copilotChat || !copilotChat.messages) {
-    // You can return a loading skeleton here if you want
-    return null;
-  }
-
   const { messages, append, input, setInput, isLoading } = copilotChat;
 
   const handleSubmit = (e: FormEvent) => {
