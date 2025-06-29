@@ -6,35 +6,24 @@ import { FormEvent, useState, useEffect } from 'react'
 import { Mic, SendHorizontal, X, Loader2 } from 'lucide-react'
 
 function ChatInterface() {
-  const copilotChat = useCopilotChat({
-    // The 'body' argument is a required parameter for the useCopilotChat hook.
-    // It is used to pass additional information to the Copilot backend.
-    // We can pass an empty object here for now.
-    body: {}
-  });
+  // Default to an empty object to avoid destructuring errors on initial render.
+  const { 
+    messages,
+    append, 
+    input, 
+    setInput, 
+    isLoading, 
+    stop 
+  } = useCopilotChat({ body: {} }) || {};
 
-  // Guard against uninitialized state from the hook
-  if (!copilotChat || !copilotChat.messages) {
-    return (
-      <div className="bg-white dark:bg-card border border-gray-200 dark:border-gray-700 rounded-xl shadow-lg flex flex-col h-full max-h-[calc(100vh-12rem)]">
-        <div className="p-4 border-b border-gray-200 dark:border-gray-700 flex justify-between items-center shrink-0">
-          <h2 className="text-base font-semibold text-gray-800 dark:text-gray-200">Copilot</h2>
-        </div>
-        <div className="flex-1 flex items-center justify-center">
-            <Loader2 className="animate-spin h-5 w-5 text-muted-foreground" />
-        </div>
-        <div className="p-4 border-t border-gray-200 dark:border-gray-700 shrink-0" />
-      </div>
-    );
-  }
-  
-  const { messages, append, input, setInput, isLoading, stop } = copilotChat;
+  // Safely access messages, defaulting to an empty array.
+  const safeMessages = messages || [];
 
   const handleSubmit = (e: FormEvent) => {
     e.preventDefault()
-    if (!input || !input.trim() || isLoading) return
-    append({ role: 'user', content: input })
-    setInput('')
+    if (!input || !input.trim() || isLoading || !append || !setInput) return;
+    append({ role: 'user', content: input });
+    setInput('');
   }
 
   const suggestions = [
@@ -47,18 +36,18 @@ function ChatInterface() {
     <div className="bg-white dark:bg-card border border-gray-200 dark:border-gray-700 rounded-xl shadow-lg flex flex-col h-full max-h-[calc(100vh-12rem)]">
       <div className="p-4 border-b border-gray-200 dark:border-gray-700 flex justify-between items-center shrink-0">
         <h2 className="text-base font-semibold text-gray-800 dark:text-gray-200">Copilot</h2>
-        <button onClick={() => stop()} className="text-gray-500 hover:text-gray-800 dark:hover:text-gray-200">
+        <button onClick={() => stop && stop()} className="text-gray-500 hover:text-gray-800 dark:hover:text-gray-200">
           <X size={20} />
         </button>
       </div>
 
       <div className="flex-1 overflow-y-auto p-6 space-y-4">
-        {messages.length === 0 && !isLoading && (
+        {safeMessages.length === 0 && !isLoading && (
             <div className="text-gray-500 dark:text-gray-400 text-sm">
                 Welcome to RuleWise! What would you like help with?
             </div>
         )}
-        {messages.map((msg, idx) => (
+        {safeMessages.map((msg, idx) => (
           <div key={idx} className={`flex ${msg.role === 'user' ? 'justify-end' : 'justify-start'}`}>
             <div
               className={`max-w-[85%] px-4 py-2 rounded-lg text-sm ${
@@ -82,16 +71,19 @@ function ChatInterface() {
       </div>
 
       <div className="p-4 border-t border-gray-200 dark:border-gray-700 shrink-0">
-        {messages.length === 0 && !isLoading && (
+        {safeMessages.length === 0 && !isLoading && (
           <div className="flex flex-col items-start gap-2 mb-4">
               {suggestions.map(s => (
                   <button
                       key={s}
                       onClick={() => {
-                        append({ role: 'user', content: s });
-                        setInput('');
+                        if (append && setInput) {
+                          append({ role: 'user', content: s });
+                          setInput('');
+                        }
                       }}
                       className="w-full text-left px-3 py-1.5 text-sm bg-transparent border border-gray-300 dark:border-gray-600 rounded-md hover:bg-gray-100 dark:hover:bg-gray-800"
+                      disabled={!append}
                   >
                       {s}
                   </button>
@@ -102,16 +94,17 @@ function ChatInterface() {
           <div className="relative">
             <input
               type="text"
-              value={input}
-              onChange={(e) => setInput(e.target.value)}
+              value={input || ''}
+              onChange={(e) => setInput && setInput(e.target.value)}
               placeholder="Type a message..."
               className="w-full pl-4 pr-20 py-2.5 text-sm border border-gray-300 dark:border-gray-600 rounded-lg bg-gray-50 dark:bg-gray-900 focus:outline-none focus:ring-1 focus:ring-primary"
+              disabled={!setInput}
             />
             <div className="absolute inset-y-0 right-0 flex items-center pr-2">
               <button type="button" className="p-2 text-gray-500 hover:text-primary">
                 <Mic size={18} />
               </button>
-              <button type="submit" className="p-2 text-gray-500 hover:text-primary disabled:text-gray-300 dark:disabled:text-gray-600" disabled={!input || !input.trim() || isLoading}>
+              <button type="submit" className="p-2 text-gray-500 hover:text-primary disabled:text-gray-300 dark:disabled:text-gray-600" disabled={!input || !input.trim() || isLoading || !append}>
                 <SendHorizontal size={18} />
               </button>
             </div>
@@ -131,6 +124,21 @@ export function CopilotChat() {
     setIsClient(true)
   }, [])
 
-  // This ensures the ChatInterface is only rendered on the client, preventing the SSR crash.
-  return isClient ? <ChatInterface /> : null
+  if (!isClient) {
+    // Render a placeholder or null on the server to prevent SSR issues.
+    // This also provides a better user experience than an empty space.
+    return (
+        <div className="bg-white dark:bg-card border border-gray-200 dark:border-gray-700 rounded-xl shadow-lg flex flex-col h-full max-h-[calc(100vh-12rem)]">
+            <div className="p-4 border-b border-gray-200 dark:border-gray-700 flex justify-between items-center shrink-0">
+                <h2 className="text-base font-semibold text-gray-800 dark:text-gray-200">Copilot</h2>
+            </div>
+            <div className="flex-1 flex items-center justify-center">
+                <Loader2 className="animate-spin h-5 w-5 text-muted-foreground" />
+            </div>
+            <div className="p-4 border-t border-gray-200 dark:border-gray-700 shrink-0" />
+        </div>
+    );
+  }
+
+  return <ChatInterface />
 }
