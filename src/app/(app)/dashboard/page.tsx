@@ -27,7 +27,6 @@ export default function DashboardPage() {
   );
 }
 
-
 function DashboardContent({ t }: { t: any; }) {
   const [isCopilotOpen, setIsCopilotOpen] = useState(true);
 
