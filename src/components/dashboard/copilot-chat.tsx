@@ -7,8 +7,9 @@ import { Mic, SendHorizontal, X } from 'lucide-react'
 function ChatInterface() {
   const copilotChat = useCopilotChat();
 
-  // This guard ensures that the component doesn't render until the hook is fully initialized.
-  if (!copilotChat) {
+  // Guard against the hook not being fully initialized.
+  // We check for `messages` specifically as that's what causes the crash.
+  if (!copilotChat || !copilotChat.messages) {
     return null;
   }
 
