@@ -6,7 +6,14 @@ import { FormEvent, useState, useEffect } from 'react'
 import { Mic, SendHorizontal, X } from 'lucide-react'
 
 function ChatInterface() {
-  const { messages, append, input, setInput, isLoading } = useCopilotChat()
+  const copilotChat = useCopilotChat()
+
+  // This prevents a crash on the client if the hook isn't ready immediately.
+  if (!copilotChat) {
+    return null;
+  }
+
+  const { messages, append, input, setInput, isLoading } = copilotChat;
 
   const suggestions = [
     'Suggest a new business rule for employee bonuses',
@@ -104,5 +111,6 @@ export function CopilotChat() {
     setIsClient(true)
   }, [])
 
+  // This ensures the ChatInterface is only rendered on the client, preventing the SSR crash.
   return isClient ? <ChatInterface /> : null
 }
