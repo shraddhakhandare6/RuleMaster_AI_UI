@@ -1,24 +1,34 @@
+
 'use client'
 
 import { useCopilotChat } from '@copilotkit/react-core'
-import { FormEvent, useEffect, useState } from 'react'
+import { FormEvent } from 'react'
 import { Mic, SendHorizontal, X } from 'lucide-react'
 
-function ChatInterface() {
-  const { messages, append, input, setInput, isLoading } = useCopilotChat();
+export function CopilotChat() {
+  const copilotChat = useCopilotChat()
+
+  // Safely destructure with default values to prevent crashes on SSR.
+  const { 
+    messages = [], 
+    append = () => {}, 
+    input = '', 
+    setInput = () => {}, 
+    isLoading = false 
+  } = copilotChat || {};
 
   const suggestions = [
     'Suggest a new business rule for employee bonuses',
     'How many active rules do I have?',
     'Find all rules related to marketing',
-  ];
+  ]
 
   const handleSubmit = (e: FormEvent) => {
-    e.preventDefault();
-    if (!input || !input.trim() || isLoading) return;
-    append({ role: 'user', content: input });
-    setInput('');
-  };
+    e.preventDefault()
+    if (!input || !input.trim() || isLoading) return
+    append({ role: 'user', content: input })
+    setInput('')
+  }
 
   return (
     <div className="bg-white dark:bg-card border border-gray-200 dark:border-gray-700 rounded-xl shadow-lg flex flex-col h-full max-h-[calc(100vh-12rem)]">
@@ -93,15 +103,5 @@ function ChatInterface() {
         </form>
       </div>
     </div>
-  );
-}
-
-export function CopilotChat() {
-  const [isClient, setIsClient] = useState(false);
-
-  useEffect(() => {
-    setIsClient(true);
-  }, []);
-
-  return isClient ? <ChatInterface /> : null;
+  )
 }
