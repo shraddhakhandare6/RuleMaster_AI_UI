@@ -38,7 +38,7 @@ function DashboardContent({ t }: { t: any; }) {
     ],
     handler: ({ query }) => {
       // In a real app, you would implement the logic to find and display rules.
-      // For this demo, we'll just log it.
+      // For this demo, we'll just log it.//
       console.log(`Finding rules with query: "${query}"`);
       alert(`Finding rules for query: "${query}". This is a demo action and is not fully implemented.`);
     },
