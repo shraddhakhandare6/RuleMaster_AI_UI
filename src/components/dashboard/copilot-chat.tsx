@@ -1,14 +1,34 @@
 
 'use client'
 
-import { useCopilotChat } from '@copilotkit/react-core'
+import { useCopilotChat, type Message } from '@copilotkit/react-core'
 import { FormEvent, useState, useEffect } from 'react'
-import { Mic, SendHorizontal, X } from 'lucide-react'
+import { Mic, SendHorizontal, X, Loader2 } from 'lucide-react'
 
 function ChatInterface() {
-  const copilotChat = useCopilotChat()
+  const copilotChat = useCopilotChat({
+    // The 'body' argument is a required parameter for the useCopilotChat hook.
+    // It is used to pass additional information to the Copilot backend.
+    // We can pass an empty object here for now.
+    body: {}
+  });
 
-  const { messages, append, input, setInput, isLoading } = copilotChat;
+  // Guard against uninitialized state from the hook
+  if (!copilotChat || !copilotChat.messages) {
+    return (
+      <div className="bg-white dark:bg-card border border-gray-200 dark:border-gray-700 rounded-xl shadow-lg flex flex-col h-full max-h-[calc(100vh-12rem)]">
+        <div className="p-4 border-b border-gray-200 dark:border-gray-700 flex justify-between items-center shrink-0">
+          <h2 className="text-base font-semibold text-gray-800 dark:text-gray-200">Copilot</h2>
+        </div>
+        <div className="flex-1 flex items-center justify-center">
+            <Loader2 className="animate-spin h-5 w-5 text-muted-foreground" />
+        </div>
+        <div className="p-4 border-t border-gray-200 dark:border-gray-700 shrink-0" />
+      </div>
+    );
+  }
+  
+  const { messages, append, input, setInput, isLoading, stop } = copilotChat;
 
   const handleSubmit = (e: FormEvent) => {
     e.preventDefault()
@@ -27,7 +47,7 @@ function ChatInterface() {
     <div className="bg-white dark:bg-card border border-gray-200 dark:border-gray-700 rounded-xl shadow-lg flex flex-col h-full max-h-[calc(100vh-12rem)]">
       <div className="p-4 border-b border-gray-200 dark:border-gray-700 flex justify-between items-center shrink-0">
         <h2 className="text-base font-semibold text-gray-800 dark:text-gray-200">Copilot</h2>
-        <button className="text-gray-500 hover:text-gray-800 dark:hover:text-gray-200">
+        <button onClick={() => stop()} className="text-gray-500 hover:text-gray-800 dark:hover:text-gray-200">
           <X size={20} />
         </button>
       </div>
@@ -53,8 +73,9 @@ function ChatInterface() {
         ))}
         {isLoading && (
             <div className="flex justify-start">
-                <div className="px-4 py-2 rounded-lg bg-gray-100 dark:bg-gray-800 text-gray-900 dark:text-gray-100 text-sm">
-                    Thinking...
+                <div className="px-4 py-2 rounded-lg bg-gray-100 dark:bg-gray-800 text-gray-900 dark:text-gray-100 text-sm flex items-center gap-2">
+                    <Loader2 className="animate-spin h-4 w-4" />
+                    <span>Thinking...</span>
                 </div>
             </div>
         )}
@@ -66,7 +87,10 @@ function ChatInterface() {
               {suggestions.map(s => (
                   <button
                       key={s}
-                      onClick={() => append({ role: 'user', content: s })}
+                      onClick={() => {
+                        append({ role: 'user', content: s });
+                        setInput('');
+                      }}
                       className="w-full text-left px-3 py-1.5 text-sm bg-transparent border border-gray-300 dark:border-gray-600 rounded-md hover:bg-gray-100 dark:hover:bg-gray-800"
                   >
                       {s}
@@ -98,6 +122,7 @@ function ChatInterface() {
     </div>
   )
 }
+
 
 export function CopilotChat() {
   const [isClient, setIsClient] = useState(false)
