@@ -17,18 +17,18 @@ function ChatInterface() {
 
   const { messages, append, input, setInput, isLoading } = copilotChat;
 
-  const suggestions = [
-    'Suggest a new business rule for employee bonuses',
-    'How many active rules do I have?',
-    'Find all rules related to marketing',
-  ]
-
   const handleSubmit = (e: FormEvent) => {
     e.preventDefault()
     if (!input || !input.trim() || isLoading) return
     append({ role: 'user', content: input })
     setInput('')
   }
+
+  const suggestions = [
+    'Suggest a new business rule for employee bonuses',
+    'How many active rules do I have?',
+    'Find all rules related to marketing',
+  ]
 
   return (
     <div className="bg-white dark:bg-card border border-gray-200 dark:border-gray-700 rounded-xl shadow-lg flex flex-col h-full max-h-[calc(100vh-12rem)]">
