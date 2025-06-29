@@ -2,20 +2,11 @@
 'use client'
 
 import { useCopilotChat } from '@copilotkit/react-core'
-import { FormEvent } from 'react'
+import { FormEvent, useState, useEffect } from 'react'
 import { Mic, SendHorizontal, X } from 'lucide-react'
 
-export function CopilotChat() {
-  const copilotChat = useCopilotChat()
-
-  // Safely destructure with default values to prevent crashes on SSR.
-  const { 
-    messages = [], 
-    append = () => {}, 
-    input = '', 
-    setInput = () => {}, 
-    isLoading = false 
-  } = copilotChat || {};
+function ChatInterface() {
+  const { messages, append, input, setInput, isLoading } = useCopilotChat()
 
   const suggestions = [
     'Suggest a new business rule for employee bonuses',
@@ -104,4 +95,14 @@ export function CopilotChat() {
       </div>
     </div>
   )
+}
+
+export function CopilotChat() {
+  const [isClient, setIsClient] = useState(false)
+
+  useEffect(() => {
+    setIsClient(true)
+  }, [])
+
+  return isClient ? <ChatInterface /> : null
 }
