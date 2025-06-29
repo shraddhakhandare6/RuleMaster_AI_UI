@@ -5,13 +5,20 @@ import { FormEvent, useEffect, useState } from 'react'
 import { Mic, SendHorizontal, X } from 'lucide-react'
 
 function ChatInterface() {
+  const copilotChat = useCopilotChat();
+
+  // This guard ensures that the component doesn't render until the hook is fully initialized.
+  if (!copilotChat) {
+    return null;
+  }
+
   const {
-    messages = [],
+    messages,
     append,
     input,
     setInput,
     isLoading
-  } = useCopilotChat() || {};
+  } = copilotChat;
 
   const suggestions = [
     'Suggest a new business rule for employee bonuses',
@@ -21,9 +28,9 @@ function ChatInterface() {
 
   const handleSubmit = (e: FormEvent) => {
     e.preventDefault();
-    if (!input || !input.trim() || isLoading || !append) return;
+    if (!input || !input.trim() || isLoading) return;
     append({ role: 'user', content: input });
-    setInput?.('');
+    setInput('');
   };
 
   return (
@@ -69,11 +76,7 @@ function ChatInterface() {
               {suggestions.map(s => (
                   <button 
                       key={s}
-                      onClick={() => {
-                        if (append) {
-                           append({ role: 'user', content: s });
-                        }
-                      }}
+                      onClick={() => append({ role: 'user', content: s })}
                       className="w-full text-left px-3 py-1.5 text-sm bg-transparent border border-gray-300 dark:border-gray-600 rounded-md hover:bg-gray-100 dark:hover:bg-gray-800"
                   >
                       {s}
@@ -85,8 +88,8 @@ function ChatInterface() {
           <div className="relative">
             <input
               type="text"
-              value={input || ''}
-              onChange={(e) => setInput?.(e.target.value)}
+              value={input}
+              onChange={(e) => setInput(e.target.value)}
               placeholder="Type a message..."
               className="w-full pl-4 pr-20 py-2.5 text-sm border border-gray-300 dark:border-gray-600 rounded-lg bg-gray-50 dark:bg-gray-900 focus:outline-none focus:ring-1 focus:ring-primary"
             />
