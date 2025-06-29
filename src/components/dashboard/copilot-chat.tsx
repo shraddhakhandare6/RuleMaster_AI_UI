@@ -5,11 +5,13 @@ import { useCopilotChat, type Message } from '@copilotkit/react-core'
 import { FormEvent, useState, useEffect } from 'react'
 import { Mic, SendHorizontal, X, Loader2 } from 'lucide-react'
 
-function ChatInterface() {
-  // Use the hook directly. It might be undefined on the initial client render.
-  const copilotChat = useCopilotChat({ body: {} });
+type CopilotChatProps = {
+  onClose?: () => void;
+};
 
-  // Safely destructure with defaults to prevent errors.
+function ChatInterface({ onClose }: CopilotChatProps) {
+  const copilotChat = useCopilotChat({ body: {} });
+  
   const { 
     messages = [],
     append, 
@@ -18,12 +20,23 @@ function ChatInterface() {
     isLoading, 
     stop 
   } = copilotChat || {};
-
+  
+  const isFormDisabled = isLoading || !copilotChat;
+  
   const handleSubmit = (e: FormEvent) => {
     e.preventDefault();
     if (!input || !input.trim() || !append || !setInput) return;
     append({ role: 'user', content: input });
     setInput('');
+  }
+
+  const handleClose = () => {
+    if (stop) {
+      stop();
+    }
+    if (onClose) {
+      onClose();
+    }
   }
 
   const suggestions = [
@@ -32,16 +45,15 @@ function ChatInterface() {
     'Find all rules related to marketing',
   ];
 
-  // The form is disabled if the hook isn't initialized or if a response is loading.
-  const isFormDisabled = isLoading || !copilotChat;
-
   return (
     <div className="bg-white dark:bg-card border border-gray-200 dark:border-gray-700 rounded-xl shadow-lg flex flex-col h-full max-h-[calc(100vh-12rem)]">
       <div className="p-4 border-b border-gray-200 dark:border-gray-700 flex justify-between items-center shrink-0">
         <h2 className="text-base font-semibold text-gray-800 dark:text-gray-200">Copilot</h2>
-        <button onClick={() => stop && stop()} className="text-gray-500 hover:text-gray-800 dark:hover:text-gray-200" disabled={isFormDisabled}>
-          <X size={20} />
-        </button>
+        {onClose && (
+          <button onClick={handleClose} className="text-gray-500 hover:text-gray-800 dark:hover:text-gray-200">
+            <X size={20} />
+          </button>
+        )}
       </div>
 
       <div className="flex-1 overflow-y-auto p-6 space-y-4">
@@ -120,7 +132,7 @@ function ChatInterface() {
 }
 
 
-export function CopilotChat() {
+export function CopilotChat({ onClose }: CopilotChatProps) {
   const [isClient, setIsClient] = useState(false)
 
   useEffect(() => {
@@ -143,5 +155,5 @@ export function CopilotChat() {
     );
   }
 
-  return <ChatInterface />
+  return <ChatInterface onClose={onClose} />
 }

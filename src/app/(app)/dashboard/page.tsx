@@ -1,6 +1,7 @@
 
 "use client";
 
+import { useState } from "react";
 import { PageHeader } from "@/components/layout/page-header";
 import { StatsCards } from "@/components/dashboard/stats-cards";
 import { RecentActivity } from "@/components/dashboard/recent-activity";
@@ -8,6 +9,9 @@ import { CopilotKit } from "@copilotkit/react-core";
 import { useCopilotAction } from "@copilotkit/react-core";
 import { useTranslations } from "@/hooks/use-translations";
 import { CopilotChat } from "@/components/dashboard/copilot-chat";
+import { Button } from "@/components/ui/button";
+import { MessageSquare } from "lucide-react";
+
 
 export default function DashboardPage() {
   const t = useTranslations();
@@ -24,6 +28,8 @@ export default function DashboardPage() {
 }
 
 function DashboardContent({ t }: { t: any; }) {
+  const [isCopilotOpen, setIsCopilotOpen] = useState(true);
+
   useCopilotAction({
     name: "findRules",
     description: "Find rules matching a query.",
@@ -41,13 +47,22 @@ function DashboardContent({ t }: { t: any; }) {
   return (
     <div className="flex flex-col lg:flex-row gap-8">
       <div className="flex-1 space-y-6">
-        <PageHeader title={t.dashboard.title} />
+        <PageHeader title={t.dashboard.title}>
+          {!isCopilotOpen && (
+            <Button onClick={() => setIsCopilotOpen(true)}>
+              <MessageSquare className="mr-2 h-4 w-4" />
+              Show Copilot
+            </Button>
+          )}
+        </PageHeader>
         <StatsCards />
         <RecentActivity />
       </div>
-      <aside className="w-full lg:w-[400px] xl:w-[450px] shrink-0">
-        <CopilotChat />
-      </aside>
+      {isCopilotOpen && (
+        <aside className="w-full lg:w-[400px] xl:w-[450px] shrink-0">
+          <CopilotChat onClose={() => setIsCopilotOpen(false)} />
+        </aside>
+      )}
     </div>
   );
 }
