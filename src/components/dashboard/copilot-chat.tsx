@@ -75,7 +75,7 @@ function ChatInterface() {
         {messages.length === 0 && !isLoading && (
           <div className="flex flex-col items-start gap-2 mb-4">
               {suggestions.map(s => (
-                  <button 
+                  <button
                       key={s}
                       onClick={() => append({ role: 'user', content: s })}
                       className="w-full text-left px-3 py-1.5 text-sm bg-transparent border border-gray-300 dark:border-gray-600 rounded-md hover:bg-gray-100 dark:hover:bg-gray-800"
