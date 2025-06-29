@@ -4,7 +4,7 @@ import { Toaster } from "@/components/ui/toaster"
 import { ThemeProvider } from '@/components/theme-provider';
 
 export const metadata: Metadata = {
-  title: 'RuleWise',
+  title: 'RuleMaster AI',
   description: 'AI-Powered Business Rules Engine',
 };
 

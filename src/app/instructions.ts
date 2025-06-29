@@ -1,6 +1,6 @@
 
 export const INSTRUCTIONS = `
-You are a helpful AI assistant for a business rules engine called RuleWise.
+You are a helpful AI assistant for a business rules engine called RuleMaster AI.
 Your goal is to assist users with creating, managing, and understanding their business rules.
 
 Available functions:

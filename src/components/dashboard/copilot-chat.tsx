@@ -59,7 +59,7 @@ function ChatInterface({ onClose }: CopilotChatProps) {
       <div className="flex-1 overflow-y-auto p-6 space-y-4">
         {messages.length === 0 && !isLoading && (
             <div className="text-gray-500 dark:text-gray-400 text-sm">
-                Welcome to RuleWise! What would you like help with?
+                Welcome to RuleMaster AI! What would you like help with?
             </div>
         )}
         {messages.map((msg, idx) => (

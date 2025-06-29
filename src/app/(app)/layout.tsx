@@ -3,7 +3,7 @@ import type { Metadata } from "next"
 import { UserProvider } from "@/context/user-context"
 
 export const metadata: Metadata = {
-  title: "RuleWise Dashboard",
+  title: "RuleMaster AI Dashboard",
   description: "Manage your business rules with the power of AI.",
 };
 
