@@ -44,7 +44,7 @@ body {
     --sidebar-accent-foreground: 222.2 47.4% 11.2%;
     --sidebar-border: 214.3 31.8% 91.4%;
     --sidebar-ring: 198 93% 60%;
-    --logo-color: var(--primary);
+    --logo-color: hsl(var(--primary));
   }
 
   .dark {
@@ -64,7 +64,7 @@ body {
     --accent-foreground: 222.2 47.4% 11.2%;
     --destructive: 0 62.8% 30.6%;
     --destructive-foreground: 0 0% 98%;
-    --border: 0 0% 22%;
+    --border: 0 0% 28%;
     --input: 0 0% 16%;
     --ring: 180 100% 50%;
 
@@ -75,10 +75,10 @@ body {
     --chart-5: 215 20.2% 65.1%;
 
     /* Sidebar theme for dark mode */
-    --sidebar-background: 0 0% 15%;
+    --sidebar-background: 0 0% 18%;
     --sidebar-foreground: 0 0% 98%;
     --sidebar-primary: 180 100% 50%;
-    --sidebar-primary-foreground: 0 0% 100%;
+    --sidebar-primary-foreground: 0 0% 0%;
     --sidebar-accent: 180 100% 50%;
     --sidebar-accent-foreground: 222 47% 11%;
     --sidebar-border: 0 0% 28%;
@@ -98,6 +98,6 @@ body {
 
 /* Custom styles for CopilotKit popup button */
 .copilot-kit-popup-button {
-  background-color: hsl(var(--primary)) !important;
-  color: hsl(var(--primary-foreground)) !important;
+  background-color: hsl(var(--accent)) !important;
+  color: hsl(var(--accent-foreground)) !important;
 }
