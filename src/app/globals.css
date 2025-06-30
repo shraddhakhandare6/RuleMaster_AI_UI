@@ -9,81 +9,77 @@ body {
 
 @layer base {
   :root {
-    --background: 30 31% 95%;
-    --foreground: 16 25% 10%;
-    --card: 30 31% 95%;
-    --card-foreground: 16 25% 10%;
-    --popover: 30 31% 95%;
-    --popover-foreground: 16 25% 10%;
-    --primary: 16 25% 53%;
+    --background: 34 33% 86%;
+    --foreground: 20 15% 25%;
+    --card: 34 33% 86%;
+    --card-foreground: 20 15% 25%;
+    --popover: 34 33% 86%;
+    --popover-foreground: 20 15% 25%;
+    --primary: 15 26% 54%;
     --primary-foreground: 20 30% 98%;
-    --secondary: 20 30% 91%;
-    --secondary-foreground: 16 25% 25%;
-    --muted: 20 30% 91%;
-    --muted-foreground: 16 25% 45%;
-    --accent: 19 29% 85%;
-    --accent-foreground: 16 25% 15%;
+    --secondary: 24 24% 80%;
+    --secondary-foreground: 20 15% 15%;
+    --muted: 24 24% 80%;
+    --muted-foreground: 20 15% 45%;
+    --accent: 20 22% 70%;
+    --accent-foreground: 20 15% 15%;
     --destructive: 0 84.2% 60.2%;
     --destructive-foreground: 210 40% 98%;
-    --border: 20 30% 88%;
-    --input: 20 30% 88%;
-    --ring: 16 25% 53%;
-
-    --chart-1: 16 25% 53%;
-    --chart-2: 18 41% 76%;
-    --chart-3: 19 29% 67%;
-    --chart-4: 30 31% 85%;
-    --chart-5: 16 25% 40%;
-
-    /* Sidebar theme for light mode */
-    --sidebar-background: 30 31% 92%;
-    --sidebar-foreground: 16 25% 10%;
-    --sidebar-primary: 16 25% 53%;
+    --border: 24 24% 75%;
+    --input: 24 24% 75%;
+    --ring: 15 26% 54%;
+    --chart-1: 15 26% 54%;
+    --chart-2: 20 22% 70%;
+    --chart-3: 24 24% 80%;
+    --chart-4: 34 33% 86%;
+    --chart-5: 15 26% 40%;
+    --sidebar-background: 34 33% 90%;
+    --sidebar-foreground: 20 15% 25%;
+    --sidebar-primary: 15 26% 54%;
     --sidebar-primary-foreground: 20 30% 98%;
-    --sidebar-accent: 19 29% 85%;
-    --sidebar-accent-foreground: 16 25% 10%;
-    --sidebar-border: 20 30% 88%;
-    --sidebar-ring: 16 25% 53%;
-    --logo-color: hsl(var(--primary));
+    --sidebar-accent: 20 22% 80%;
+    --sidebar-accent-foreground: 20 15% 15%;
+    --sidebar-border: 24 24% 80%;
+    --sidebar-ring: 15 26% 54%;
+    --logo-color: hsl(var(--accent));
+    --radius: 0.75rem;
   }
 
   .dark {
-    --background: 20 5% 10%;
-    --foreground: 30 31% 85%;
-    --card: 20 5% 10%;
-    --card-foreground: 30 31% 85%;
-    --popover: 20 5% 10%;
-    --popover-foreground: 30 31% 85%;
-    --primary: 16 25% 53%;
+    --background: 20 7% 12%;
+    --foreground: 34 33% 86%;
+    --card: 20 7% 12%;
+    --card-foreground: 34 33% 86%;
+    --popover: 20 7% 12%;
+    --popover-foreground: 34 33% 86%;
+    --primary: 15 26% 54%;
     --primary-foreground: 20 30% 98%;
-    --secondary: 20 5% 15%;
-    --secondary-foreground: 30 31% 85%;
-    --muted: 20 5% 15%;
-    --muted-foreground: 30 31% 65%;
-    --accent: 20 5% 20%;
-    --accent-foreground: 30 31% 95%;
+    --secondary: 20 7% 18%;
+    --secondary-foreground: 34 33% 86%;
+    --muted: 20 7% 18%;
+    --muted-foreground: 34 33% 65%;
+    --accent: 20 7% 24%;
+    --accent-foreground: 34 33% 95%;
     --destructive: 0 62.8% 30.6%;
     --destructive-foreground: 210 40% 98%;
-    --border: 20 5% 20%;
-    --input: 20 5% 20%;
-    --ring: 16 25% 53%;
-
-    --chart-1: 16 25% 53%;
-    --chart-2: 18 41% 76%;
-    --chart-3: 19 29% 67%;
-    --chart-4: 30 31% 85%;
-    --chart-5: 16 25% 70%;
-
-    /* Sidebar theme for dark mode */
-    --sidebar-background: 20 5% 12%;
-    --sidebar-foreground: 30 31% 85%;
-    --sidebar-primary: 16 25% 53%;
+    --border: 20 7% 24%;
+    --input: 20 7% 24%;
+    --ring: 15 26% 54%;
+    --chart-1: 15 26% 54%;
+    --chart-2: 20 22% 70%;
+    --chart-3: 24 24% 80%;
+    --chart-4: 34 33% 86%;
+    --chart-5: 15 26% 70%;
+    --sidebar-background: 20 7% 15%;
+    --sidebar-foreground: 34 33% 86%;
+    --sidebar-primary: 15 26% 54%;
     --sidebar-primary-foreground: 20 30% 98%;
-    --sidebar-accent: 20 5% 20%;
-    --sidebar-accent-foreground: 30 31% 95%;
-    --sidebar-border: 20 5% 18%;
-    --sidebar-ring: 16 25% 53%;
-    --logo-color: hsl(var(--primary));
+    --sidebar-accent: 20 7% 24%;
+    --sidebar-accent-foreground: 34 33% 95%;
+    --sidebar-border: 20 7% 20%;
+    --sidebar-ring: 15 26% 54%;
+    --logo-color: hsl(var(--accent));
+    --radius: 0.75rem;
   }
 }
 
