@@ -95,3 +95,9 @@ body {
     @apply bg-background text-foreground;
   }
 }
+
+/* Custom styles for CopilotKit popup button */
+.copilot-kit-popup-button {
+  background-color: hsl(var(--primary)) !important;
+  color: hsl(var(--primary-foreground)) !important;
+}
