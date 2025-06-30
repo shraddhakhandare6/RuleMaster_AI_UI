@@ -35,16 +35,16 @@ body {
     --chart-4: 222 47% 11%;
     --chart-5: 215.4 16.3% 46.9%;
 
-    --logo-color: 198 93% 60%;
+    --logo-color: var(--primary);
 
     /* Sidebar theme for light mode */
-    --sidebar-background: 222 47% 11%;
-    --sidebar-foreground: 0 0% 98%;
+    --sidebar-background: 210 40% 96.1%;
+    --sidebar-foreground: 222 47% 11%;
     --sidebar-primary: 198 93% 60%;
     --sidebar-primary-foreground: 222 47% 11%;
     --sidebar-accent: 198 93% 60%;
-    --sidebar-accent-foreground: 0 0% 98%;
-    --sidebar-border: 222 47% 15%;
+    --sidebar-accent-foreground: 222.2 47.4% 11.2%;
+    --sidebar-border: 214.3 31.8% 91.4%;
     --sidebar-ring: 198 93% 60%;
   }
 
@@ -75,7 +75,7 @@ body {
     --chart-4: 0 0% 22%;
     --chart-5: 215 20.2% 65.1%;
 
-    --logo-color: 180 100% 50%;
+    --logo-color: var(--primary);
 
     /* Sidebar theme for dark mode */
     --sidebar-background: 0 0% 10%;

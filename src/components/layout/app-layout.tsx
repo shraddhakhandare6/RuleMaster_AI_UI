@@ -25,7 +25,7 @@ export default async function AppLayout({ children }: Props) {
         <SidebarHeader>
           <Button variant="ghost" className="h-10 w-full justify-start gap-3 px-2">
             <BrainCircuit className="size-6 text-logo" />
-            <span className="font-headline text-lg font-semibold text-sidebar-foreground hover:text-black">
+            <span className="font-headline text-lg font-semibold text-sidebar-foreground">
               RuleMaster AI
             </span>
           </Button>
