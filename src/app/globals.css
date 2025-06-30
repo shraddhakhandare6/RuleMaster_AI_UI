@@ -9,33 +9,33 @@ body {
 @layer base {
   :root {
     --background: 330 67% 98%;
-    --foreground: 263 37% 30%;
+    --foreground: 271 76% 20%;
     --card: 0 0% 100%;
-    --card-foreground: 263 37% 30%;
+    --card-foreground: 271 76% 20%;
     --popover: 0 0% 100%;
-    --popover-foreground: 263 37% 30%;
-    --primary: 263 37% 30%;
+    --popover-foreground: 271 76% 20%;
+    --primary: 271 76% 53%;
     --primary-foreground: 0 0% 100%;
-    --secondary: 259 29% 86%;
-    --secondary-foreground: 263 37% 30%;
+    --secondary: 335 53% 90%;
+    --secondary-foreground: 271 76% 30%;
     --muted: 349 77% 85%;
-    --muted-foreground: 263 37% 25%;
+    --muted-foreground: 271 76% 40%;
     --accent: 342 65% 63%;
     --accent-foreground: 0 0% 100%;
     --destructive: 0 84.2% 60.2%;
     --destructive-foreground: 0 0% 98%;
     --border: 335 53% 90%;
     --input: 335 53% 90%;
-    --ring: 342 65% 63%;
+    --ring: 271 76% 53%;
     --radius: 0.5rem;
 
-    --chart-1: 263 37% 30%;
+    --chart-1: 271 76% 53%;
     --chart-2: 342 65% 63%;
-    --chart-3: 259 29% 86%;
+    --chart-3: 335 53% 90%;
     --chart-4: 349 77% 85%;
-    --chart-5: 335 53% 90%;
+    --chart-5: 271 76% 80%;
 
-    --logo-color: 263 37% 30%;
+    --logo-color: 271 76% 53%;
 
     /* Light theme sidebar */
     --sidebar-background: 0 0% 8%;
@@ -49,11 +49,11 @@ body {
   }
 
   .dark {
-    --background: 0 0% 6%;
+    --background: 271 85% 5%;
     --foreground: 0 0% 88%;
-    --card: 0 0% 6%;
+    --card: 271 85% 5%;
     --card-foreground: 0 0% 88%;
-    --popover: 0 0% 6%;
+    --popover: 271 85% 5%;
     --popover-foreground: 0 0% 88%;
     --primary: 180 100% 50%;
     --primary-foreground: 0 0% 6%;
