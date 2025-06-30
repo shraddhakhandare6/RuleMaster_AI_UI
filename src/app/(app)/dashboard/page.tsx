@@ -1,6 +1,7 @@
 
 "use client";
 
+import { useState, useEffect } from "react";
 import { PageHeader } from "@/components/layout/page-header";
 import { StatsCards } from "@/components/dashboard/stats-cards";
 import { RecentActivity } from "@/components/dashboard/recent-activity";
@@ -10,6 +11,11 @@ import "@copilotkit/react-ui/styles.css";
 
 export default function DashboardPage() {
   const t = useTranslations();
+  const [isClient, setIsClient] = useState(false)
+
+  useEffect(() => {
+    setIsClient(true)
+  }, [])
 
   const copilotLabels = {
     title: "RuleMaster AI Assistant",
@@ -25,19 +31,23 @@ export default function DashboardPage() {
         <RecentActivity />
       </div>
 
-      {/* On large screens, the sidebar will appear. It is rendered outside the main content flow,
-          so it will float on top and not affect the dashboard layout. */}
-      <div className="hidden lg:block">
-         <CopilotSidebar
-            defaultOpen={true}
-            labels={copilotLabels}
-          />
-      </div>
-      
-      {/* On small screens, a popup button will be used instead of the sidebar. */}
-      <div className="lg:hidden">
-        <CopilotPopup labels={copilotLabels} />
-      </div>
+      {isClient && (
+        <>
+          {/* On large screens, the sidebar will appear. It is rendered outside the main content flow,
+              so it will float on top and not affect the dashboard layout. */}
+          <div className="hidden lg:block">
+            <CopilotSidebar
+                defaultOpen={true}
+                labels={copilotLabels}
+              />
+          </div>
+          
+          {/* On small screens, a popup button will be used instead of the sidebar. */}
+          <div className="lg:hidden">
+            <CopilotPopup labels={copilotLabels} />
+          </div>
+        </>
+      )}
     </>
   );
 }
