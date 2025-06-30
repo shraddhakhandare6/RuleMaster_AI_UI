@@ -75,13 +75,13 @@ body {
     --chart-5: 215 20.2% 65.1%;
 
     /* Sidebar theme for dark mode */
-    --sidebar-background: 240 4% 14%;
+    --sidebar-background: 0 0% 22%;
     --sidebar-foreground: 0 0% 98%;
     --sidebar-primary: 180 100% 50%;
     --sidebar-primary-foreground: 0 0% 100%;
     --sidebar-accent: 180 100% 50%;
     --sidebar-accent-foreground: 0 0% 98%;
-    --sidebar-border: 0 0% 22%;
+    --sidebar-border: 0 0% 28%;
     --sidebar-ring: 180 100% 50%;
     --logo-color: var(--sidebar-accent);
   }
