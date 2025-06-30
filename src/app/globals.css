@@ -8,34 +8,34 @@ body {
 
 @layer base {
   :root {
-    --background: 208 100% 97%;
-    --foreground: 240 10% 3.9%;
-    --card: 208 100% 100%;
-    --card-foreground: 240 10% 3.9%;
-    --popover: 208 100% 100%;
-    --popover-foreground: 240 10% 3.9%;
-    --primary: 274 100% 25%;
+    --background: 330 67% 98%;
+    --foreground: 263 37% 30%;
+    --card: 0 0% 100%;
+    --card-foreground: 263 37% 30%;
+    --popover: 0 0% 100%;
+    --popover-foreground: 263 37% 30%;
+    --primary: 263 37% 30%;
     --primary-foreground: 0 0% 100%;
-    --secondary: 271 76% 95%;
-    --secondary-foreground: 274 100% 25%;
-    --muted: 220 20% 94%;
-    --muted-foreground: 240 3.8% 46.1%;
-    --accent: 271 76% 53%;
+    --secondary: 259 29% 86%;
+    --secondary-foreground: 263 37% 30%;
+    --muted: 349 77% 85%;
+    --muted-foreground: 263 37% 25%;
+    --accent: 342 65% 63%;
     --accent-foreground: 0 0% 100%;
     --destructive: 0 84.2% 60.2%;
     --destructive-foreground: 0 0% 98%;
-    --border: 0 0% 89.8%;
-    --input: 0 0% 89.8%;
-    --ring: 274 100% 25%;
+    --border: 335 53% 90%;
+    --input: 335 53% 90%;
+    --ring: 342 65% 63%;
     --radius: 0.5rem;
 
-    --chart-1: 274 100% 25%;
-    --chart-2: 271 76% 53%;
-    --chart-3: 275 96% 76%;
-    --chart-4: 200 92% 60%;
-    --chart-5: 275 96% 60%;
+    --chart-1: 263 37% 30%;
+    --chart-2: 342 65% 63%;
+    --chart-3: 259 29% 86%;
+    --chart-4: 349 77% 85%;
+    --chart-5: 335 53% 90%;
 
-    --logo-color: 274 100% 25%;
+    --logo-color: 263 37% 30%;
 
     /* Light theme sidebar */
     --sidebar-background: 0 0% 8%;
