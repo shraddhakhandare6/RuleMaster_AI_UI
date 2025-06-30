@@ -1,3 +1,4 @@
+
 "use client"
 
 import { useEffect, useState } from "react"
@@ -57,7 +58,7 @@ type RuleFormData = z.infer<typeof ruleSchema>
 type RuleEditorProps = {
   isOpen: boolean
   onOpenChange: (isOpen: boolean) => void
-  onSave: (rule: Omit<Rule, 'id' | 'active'> & { id?: string }) => void
+  onSave: (rule: Omit<Rule, 'id' | 'active'> & { id?: string }, naturalLanguage: string) => Promise<void>
   rule?: Partial<Rule>
 }
 
@@ -66,6 +67,7 @@ export function RuleEditor({ isOpen, onOpenChange, rule, onSave }: RuleEditorPro
   const { toast } = useToast()
   const [naturalLanguage, setNaturalLanguage] = useState("")
   const [isParsing, setIsParsing] = useState(false)
+  const [isSaving, setIsSaving] = useState(false)
   
   const form = useForm<RuleFormData>({
     resolver: zodResolver(ruleSchema),
@@ -122,8 +124,10 @@ export function RuleEditor({ isOpen, onOpenChange, rule, onSave }: RuleEditorPro
     setIsParsing(false)
   }
 
-  const onSubmit = (data: RuleFormData) => {
-    onSave({ ...data, id: rule?.id })
+  const onSubmit = async (data: RuleFormData) => {
+    setIsSaving(true)
+    await onSave({ ...data, id: rule?.id }, naturalLanguage)
+    setIsSaving(false)
     onOpenChange(false)
   }
 
@@ -288,7 +292,10 @@ export function RuleEditor({ isOpen, onOpenChange, rule, onSave }: RuleEditorPro
 
                 <SheetFooter className="mt-auto pt-4">
                     <Button type="button" variant="ghost" onClick={() => onOpenChange(false)}>{t.shared.cancel}</Button>
-                    <Button type="submit">{t.rules.saveRule}</Button>
+                    <Button type="submit" disabled={isSaving || isParsing}>
+                      {isSaving ? <Loader2 className="mr-2 h-4 w-4 animate-spin" /> : null}
+                      {isSaving ? "Saving..." : t.rules.saveRule}
+                    </Button>
                 </SheetFooter>
             </form>
           </Form>
