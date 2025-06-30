@@ -1,3 +1,4 @@
+
 import Link from "next/link"
 import {
   SidebarProvider,
@@ -23,12 +24,12 @@ export default async function AppLayout({ children }: Props) {
     <SidebarProvider>
       <Sidebar side="left" variant="sidebar" collapsible="icon">
         <SidebarHeader>
-          <Button variant="ghost" className="h-10 w-full justify-start gap-3 px-2 hover:text-sidebar-accent-foreground">
+          <div className="flex h-10 w-full items-center justify-start gap-3 px-2">
             <BrainCircuit className="size-6 text-logo" />
-            <span className="font-headline text-lg font-semibold text-sidebar-foreground">
+            <span className="font-headline text-lg font-semibold text-logo">
               RuleMaster AI
             </span>
-          </Button>
+          </div>
         </SidebarHeader>
         <SidebarContent>
           <Nav />
