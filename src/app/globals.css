@@ -3,82 +3,78 @@
 @tailwind components;
 @tailwind utilities;
 
-body {
-  font-family: Arial, Helvetica, sans-serif;
-}
-
 @layer base {
   :root {
-    --background: 330 60% 96%;
-    --foreground: 274 36% 30%;
+    --background: 270 80% 98%;
+    --foreground: 274 30% 25%;
     --card: 0 0% 100%;
-    --card-foreground: 274 36% 30%;
+    --card-foreground: 274 30% 25%;
     --popover: 0 0% 100%;
-    --popover-foreground: 274 36% 30%;
-    --primary: 274 36% 30%;
+    --popover-foreground: 274 30% 25%;
+    --primary: 274 55% 45%;
     --primary-foreground: 0 0% 100%;
-    --secondary: 330 60% 92%;
-    --secondary-foreground: 274 36% 30%;
-    --muted: 330 60% 96%;
-    --muted-foreground: 274 36% 45%;
-    --accent: 341 63% 69%;
-    --accent-foreground: 274 36% 30%;
+    --secondary: 270 60% 94%;
+    --secondary-foreground: 274 30% 25%;
+    --muted: 270 60% 97%;
+    --muted-foreground: 270 20% 40%;
+    --accent: 271 76% 53%;
+    --accent-foreground: 0 0% 100%;
     --destructive: 0 84.2% 60.2%;
     --destructive-foreground: 210 40% 98%;
-    --border: 330 60% 90%;
-    --input: 330 60% 90%;
-    --ring: 274 36% 30%;
-    --chart-1: 274 36% 30%;
-    --chart-2: 341 63% 69%;
-    --chart-3: 274 25% 85%;
-    --chart-4: 348 71% 85%;
-    --chart-5: 274 36% 50%;
-    --sidebar-background: 330 60% 98%;
-    --sidebar-foreground: 274 36% 30%;
-    --sidebar-primary: 274 36% 30%;
+    --border: 270 30% 90%;
+    --input: 270 30% 90%;
+    --ring: 271 76% 53%;
+    --chart-1: 274 55% 45%;
+    --chart-2: 271 76% 53%;
+    --chart-3: 270 70% 80%;
+    --chart-4: 272 60% 70%;
+    --chart-5: 274 40% 50%;
+    --sidebar-background: 270 80% 99%;
+    --sidebar-foreground: 274 30% 25%;
+    --sidebar-primary: 274 55% 45%;
     --sidebar-primary-foreground: 0 0% 100%;
-    --sidebar-accent: 330 60% 92%;
-    --sidebar-accent-foreground: 274 36% 30%;
-    --sidebar-border: 330 60% 90%;
-    --sidebar-ring: 274 36% 30%;
-    --logo-color: 274 36% 30%;
+    --sidebar-accent: 270 60% 94%;
+    --sidebar-accent-foreground: 274 30% 25%;
+    --sidebar-border: 270 30% 90%;
+    --sidebar-ring: 271 76% 53%;
+    --logo-color: 274 55% 45%;
     --radius: 0.75rem;
   }
 
   .dark {
-    --background: 274 15% 10%;
-    --foreground: 274 25% 90%;
+    --background: 274 15% 12%;
+    --foreground: 270 40% 90%;
     --card: 274 15% 15%;
-    --card-foreground: 274 25% 90%;
+    --card-foreground: 270 40% 90%;
     --popover: 274 15% 10%;
-    --popover-foreground: 274 25% 90%;
-    --primary: 341 63% 75%;
-    --primary-foreground: 274 36% 10%;
+    --popover-foreground: 270 40% 90%;
+    --primary: 271 76% 75%;
+    --primary-foreground: 274 30% 10%;
     --secondary: 274 15% 25%;
-    --secondary-foreground: 274 25% 90%;
+    --secondary-foreground: 270 40% 90%;
     --muted: 274 15% 20%;
-    --muted-foreground: 274 25% 60%;
-    --accent: 274 25% 85%;
-    --accent-foreground: 274 36% 10%;
+    --muted-foreground: 270 25% 60%;
+    --accent: 271 76% 75%;
+    --accent-foreground: 274 30% 10%;
     --destructive: 0 62.8% 30.6%;
     --destructive-foreground: 210 40% 98%;
     --border: 274 15% 25%;
     --input: 274 15% 25%;
-    --ring: 274 25% 85%;
-    --chart-1: 341 63% 75%;
-    --chart-2: 274 25% 85%;
-    --chart-3: 348 71% 85%;
-    --chart-4: 330 60% 96%;
-    --chart-5: 274 36% 70%;
-    --sidebar-background: 274 15% 12%;
-    --sidebar-foreground: 274 25% 90%;
-    --sidebar-primary: 341 63% 75%;
-    --sidebar-primary-foreground: 274 36% 10%;
+    --ring: 271 76% 75%;
+    --chart-1: 271 76% 75%;
+    --chart-2: 271 76% 53%;
+    --chart-3: 270 70% 80%;
+    --chart-4: 272 60% 70%;
+    --chart-5: 274 40% 50%;
+    --sidebar-background: 274 15% 10%;
+    --sidebar-foreground: 270 40% 90%;
+    --sidebar-primary: 271 76% 75%;
+    --sidebar-primary-foreground: 274 30% 10%;
     --sidebar-accent: 274 15% 25%;
-    --sidebar-accent-foreground: 274 25% 90%;
+    --sidebar-accent-foreground: 270 40% 90%;
     --sidebar-border: 274 15% 20%;
-    --sidebar-ring: 274 25% 85%;
-    --logo-color: 274 25% 85%;
+    --sidebar-ring: 271 76% 75%;
+    --logo-color: 271 76% 75%;
     --radius: 0.75rem;
   }
 }
@@ -94,6 +90,6 @@ body {
 
 /* Custom styles for CopilotKit popup button */
 .copilot-kit-popup-button {
-  background-color: hsl(var(--primary)) !important;
-  color: hsl(var(--primary-foreground)) !important;
+  background-color: hsl(var(--accent)) !important;
+  color: hsl(var(--accent-foreground)) !important;
 }
