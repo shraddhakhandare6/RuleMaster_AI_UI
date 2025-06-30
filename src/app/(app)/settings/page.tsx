@@ -62,85 +62,83 @@ export default function SettingsPage() {
     <div className="space-y-6">
       <PageHeader title={t.settings.title} />
       
-      <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
-        <div className="lg:col-span-2 space-y-6">
-          <Card>
-            <CardHeader>
-              <CardTitle>{t.settings.profileTitle}</CardTitle>
-              <CardDescription>{t.settings.profileDescription}</CardDescription>
-            </CardHeader>
-            <CardContent className="space-y-4">
-              <div className="grid grid-cols-2 gap-4">
-                <div className="space-y-2">
-                  <Label htmlFor="first-name">{t.settings.firstName}</Label>
-                  <Input 
-                    id="first-name"
-                    value={localFirstName}
-                    onChange={(e) => setLocalFirstName(e.target.value)}
-                  />
-                </div>
-                <div className="space-y-2">
-                  <Label htmlFor="last-name">{t.settings.lastName}</Label>
-                  <Input id="last-name" defaultValue="User" />
-                </div>
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+        <Card>
+          <CardHeader>
+            <CardTitle>{t.settings.profileTitle}</CardTitle>
+            <CardDescription>{t.settings.profileDescription}</CardDescription>
+          </CardHeader>
+          <CardContent className="space-y-4">
+            <div className="grid grid-cols-2 gap-4">
+              <div className="space-y-2">
+                <Label htmlFor="first-name">{t.settings.firstName}</Label>
+                <Input 
+                  id="first-name"
+                  value={localFirstName}
+                  onChange={(e) => setLocalFirstName(e.target.value)}
+                />
               </div>
               <div className="space-y-2">
-                <Label htmlFor="email">{t.settings.email}</Label>
-                <Input id="email" type="email" defaultValue="admin@rulewise.app" />
+                <Label htmlFor="last-name">{t.settings.lastName}</Label>
+                <Input id="last-name" defaultValue="User" />
               </div>
-            </CardContent>
-            <CardFooter>
-              <Button onClick={() => handleSave('profile')}>{t.settings.saveProfile}</Button>
-            </CardFooter>
-          </Card>
+            </div>
+            <div className="space-y-2">
+              <Label htmlFor="email">{t.settings.email}</Label>
+              <Input id="email" type="email" defaultValue="admin@rulewise.app" />
+            </div>
+          </CardContent>
+          <CardFooter>
+            <Button onClick={() => handleSave('profile')}>{t.settings.saveProfile}</Button>
+          </CardFooter>
+        </Card>
 
-          <Card>
-            <CardHeader>
-              <CardTitle>{t.settings.preferencesTitle}</CardTitle>
-              <CardDescription>{t.settings.preferencesDescription}</CardDescription>
-            </CardHeader>
-            <CardContent className="space-y-4">
-               <div className="space-y-2">
-                <Label htmlFor="theme">{t.settings.theme}</Label>
-                {mounted ? (
-                  <Select value={theme} onValueChange={setTheme}>
-                    <SelectTrigger id="theme">
-                      <SelectValue placeholder={t.settings.selectTheme} />
-                    </SelectTrigger>
-                    <SelectContent>
-                      <SelectItem value="light">{t.settings.light}</SelectItem>
-                      <SelectItem value="dark">{t.settings.dark}</SelectItem>
-                      <SelectItem value="system">{t.settings.system}</SelectItem>
-                    </SelectContent>
-                  </Select>
-                ) : (
-                  <Skeleton className="h-10 w-full" />
-                )}
-              </div>
-               <div className="space-y-2">
-                <Label htmlFor="language">{t.settings.language}</Label>
-                <Select value={localLanguage} onValueChange={(value) => setLocalLanguage(value as LanguageKey)}>
-                  <SelectTrigger id="language">
-                    <SelectValue placeholder={t.settings.selectLanguage} />
+        <Card>
+          <CardHeader>
+            <CardTitle>{t.settings.preferencesTitle}</CardTitle>
+            <CardDescription>{t.settings.preferencesDescription}</CardDescription>
+          </CardHeader>
+          <CardContent className="space-y-4">
+             <div className="space-y-2">
+              <Label htmlFor="theme">{t.settings.theme}</Label>
+              {mounted ? (
+                <Select value={theme} onValueChange={setTheme}>
+                  <SelectTrigger id="theme">
+                    <SelectValue placeholder={t.settings.selectTheme} />
                   </SelectTrigger>
                   <SelectContent>
-                    <SelectItem value="en">English</SelectItem>
-                    <SelectItem value="es">Español</SelectItem>
-                    <SelectItem value="fr">Français</SelectItem>
-                    <SelectItem value="hi">हिन्दी (Hindi)</SelectItem>
-                    <SelectItem value="mr">मराठी (Marathi)</SelectItem>
-                    <SelectItem value="ta">தமிழ் (Tamil)</SelectItem>
-                    <SelectItem value="ko">한국어 (Korean)</SelectItem>
-                    <SelectItem value="zh">中文 (Chinese)</SelectItem>
+                    <SelectItem value="light">{t.settings.light}</SelectItem>
+                    <SelectItem value="dark">{t.settings.dark}</SelectItem>
+                    <SelectItem value="system">{t.settings.system}</SelectItem>
                   </SelectContent>
                 </Select>
-              </div>
-            </CardContent>
-             <CardFooter>
-              <Button onClick={() => handleSave('preferences')}>{t.settings.savePreferences}</Button>
-            </CardFooter>
-          </Card>
-        </div>
+              ) : (
+                <Skeleton className="h-10 w-full" />
+              )}
+            </div>
+             <div className="space-y-2">
+              <Label htmlFor="language">{t.settings.language}</Label>
+              <Select value={localLanguage} onValueChange={(value) => setLocalLanguage(value as LanguageKey)}>
+                <SelectTrigger id="language">
+                  <SelectValue placeholder={t.settings.selectLanguage} />
+                </SelectTrigger>
+                <SelectContent>
+                  <SelectItem value="en">English</SelectItem>
+                  <SelectItem value="es">Español</SelectItem>
+                  <SelectItem value="fr">Français</SelectItem>
+                  <SelectItem value="hi">हिन्दी (Hindi)</SelectItem>
+                  <SelectItem value="mr">मराठी (Marathi)</SelectItem>
+                  <SelectItem value="ta">தமிழ் (Tamil)</SelectItem>
+                  <SelectItem value="ko">한국어 (Korean)</SelectItem>
+                  <SelectItem value="zh">中文 (Chinese)</SelectItem>
+                </SelectContent>
+              </Select>
+            </div>
+          </CardContent>
+           <CardFooter>
+            <Button onClick={() => handleSave('preferences')}>{t.settings.savePreferences}</Button>
+          </CardFooter>
+        </Card>
       </div>
     </div>
   )
