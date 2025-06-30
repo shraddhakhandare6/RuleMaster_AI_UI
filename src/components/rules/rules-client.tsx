@@ -1,3 +1,4 @@
+
 "use client"
 
 import { useState } from "react"
@@ -26,6 +27,7 @@ import { Card, CardContent } from "@/components/ui/card"
 import { useToast } from "@/hooks/use-toast"
 import { ConfirmationDialog } from "@/components/shared/confirmation-dialog"
 import { useTranslations } from "@/hooks/use-translations"
+import { createRule, updateRule } from "@/app/actions/rules"
 
 type RulesClientProps = {
   initialRules: Rule[]
@@ -50,25 +52,41 @@ export function RulesClient({ initialRules }: RulesClientProps) {
     setIsEditorOpen(true)
   }
 
-  const handleSaveRule = (data: Omit<Rule, 'id' | 'active'> & { id?: string }) => {
+  const handleSaveRule = async (data: Omit<Rule, 'id' | 'active'> & { id?: string }, naturalLanguage: string) => {
+    let result;
     if (data.id) {
-      // Update existing rule
-      const updatedRules = rules.map(r => 
-        r.id === data.id ? { ...r, ...data, id: r.id } : r
-      )
-      setRules(updatedRules)
-      toast({ title: t.rules.ruleUpdated, description: t.rules.ruleUpdatedDesc(data.name) })
-    } else {
-      // Create new rule
-      const newRule: Rule = {
-        ...data,
-        id: `rule-${Date.now()}`,
-        active: true,
+      result = await updateRule(data.id, data, naturalLanguage);
+      if (result.success) {
+        // Optimistic update
+        const updatedRules = rules.map(r => 
+          r.id === data.id ? { ...r, ...data, id: r.id } : r
+        );
+        setRules(updatedRules);
+        toast({ title: t.rules.ruleUpdated, description: t.rules.ruleUpdatedDesc(data.name) });
+      } else {
+        toast({ variant: "destructive", title: "Update Failed", description: result.error });
       }
-      setRules([newRule, ...rules])
-      toast({ title: t.rules.ruleCreated, description: t.rules.ruleCreatedDesc(data.name) })
+    } else {
+      const nl = naturalLanguage || data.description || `Rule for ${data.name}`;
+      if (!nl) {
+        toast({ variant: "destructive", title: "Creation Failed", description: "Please provide a natural language description for the rule." });
+        return;
+      }
+      result = await createRule(data, nl);
+      if (result.success) {
+        // Optimistic update
+        const newRule: Rule = {
+          ...data,
+          id: `rule-${Date.now()}`,
+          active: true,
+        };
+        setRules([newRule, ...rules]);
+        toast({ title: t.rules.ruleCreated, description: t.rules.ruleCreatedDesc(data.name) });
+      } else {
+        toast({ variant: "destructive", title: "Creation Failed", description: result.error });
+      }
     }
-  }
+  };
   
   const handleDuplicate = (rule: Rule) => {
     const newRule: Rule = {

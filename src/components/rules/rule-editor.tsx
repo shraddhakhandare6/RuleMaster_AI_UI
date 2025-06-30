@@ -1,3 +1,4 @@
+
 "use client"
 
 import { useEffect, useState } from "react"
@@ -57,7 +58,7 @@ type RuleFormData = z.infer<typeof ruleSchema>
 type RuleEditorProps = {
   isOpen: boolean
   onOpenChange: (isOpen: boolean) => void
-  onSave: (rule: Omit<Rule, 'id' | 'active'> & { id?: string }) => void
+  onSave: (rule: Omit<Rule, 'id' | 'active'> & { id?: string }, naturalLanguage: string) => Promise<void>
   rule?: Partial<Rule>
 }
 
@@ -66,6 +67,7 @@ export function RuleEditor({ isOpen, onOpenChange, rule, onSave }: RuleEditorPro
   const { toast } = useToast()
   const [naturalLanguage, setNaturalLanguage] = useState("")
   const [isParsing, setIsParsing] = useState(false)
+  const [isSaving, setIsSaving] = useState(false)
   
   const form = useForm<RuleFormData>({
     resolver: zodResolver(ruleSchema),
@@ -122,8 +124,10 @@ export function RuleEditor({ isOpen, onOpenChange, rule, onSave }: RuleEditorPro
     setIsParsing(false)
   }
 
-  const onSubmit = (data: RuleFormData) => {
-    onSave({ ...data, id: rule?.id })
+  const onSubmit = async (data: RuleFormData) => {
+    setIsSaving(true)
+    await onSave({ ...data, id: rule?.id }, naturalLanguage)
+    setIsSaving(false)
     onOpenChange(false)
   }
 
@@ -164,7 +168,7 @@ export function RuleEditor({ isOpen, onOpenChange, rule, onSave }: RuleEditorPro
                   render={({ field }) => (
                     <FormItem>
                       <FormLabel>{t.rules.ruleName}</FormLabel>
-                      <FormControl><Input placeholder={t.rules.ruleNamePlaceholder} {...field} /></FormControl>
+                      <FormControl><Input placeholder={t.rules.ruleNamePlaceholder} {...field} value={field.value ?? ''} /></FormControl>
                       <FormMessage />
                     </FormItem>
                   )}
@@ -175,7 +179,7 @@ export function RuleEditor({ isOpen, onOpenChange, rule, onSave }: RuleEditorPro
                   render={({ field }) => (
                     <FormItem>
                       <FormLabel>{t.rules.priority}</FormLabel>
-                      <FormControl><Input type="number" {...field} /></FormControl>
+                      <FormControl><Input type="number" {...field} value={field.value ?? ''} /></FormControl>
                       <FormMessage />
                     </FormItem>
                   )}
@@ -207,7 +211,7 @@ export function RuleEditor({ isOpen, onOpenChange, rule, onSave }: RuleEditorPro
                             <FormItem>
                               <FormLabel>{t.rules.fact}</FormLabel>
                               <FormControl>
-                                <Input placeholder={t.rules.factPlaceholder} {...field} />
+                                <Input placeholder={t.rules.factPlaceholder} {...field} value={field.value ?? ''} />
                               </FormControl>
                               <FormMessage />
                             </FormItem>
@@ -220,7 +224,7 @@ export function RuleEditor({ isOpen, onOpenChange, rule, onSave }: RuleEditorPro
                             <FormItem>
                               <FormLabel>{t.rules.operator}</FormLabel>
                               <FormControl>
-                                <Input placeholder={t.rules.operatorPlaceholder} {...field} />
+                                <Input placeholder={t.rules.operatorPlaceholder} {...field} value={field.value ?? ''} />
                               </FormControl>
                               <FormMessage />
                             </FormItem>
@@ -233,7 +237,7 @@ export function RuleEditor({ isOpen, onOpenChange, rule, onSave }: RuleEditorPro
                             <FormItem>
                               <FormLabel>{t.rules.value}</FormLabel>
                               <FormControl>
-                                <Input placeholder={t.rules.valuePlaceholder} {...field} />
+                                <Input placeholder={t.rules.valuePlaceholder} {...field} value={field.value ?? ''} />
                               </FormControl>
                               <FormMessage />
                             </FormItem>
@@ -260,7 +264,7 @@ export function RuleEditor({ isOpen, onOpenChange, rule, onSave }: RuleEditorPro
                             <FormItem>
                               <FormLabel>{t.rules.action}</FormLabel>
                               <FormControl>
-                                <Input placeholder={t.rules.actionPlaceholder} {...field} />
+                                <Input placeholder={t.rules.actionPlaceholder} {...field} value={field.value ?? ''} />
                               </FormControl>
                               <FormMessage />
                             </FormItem>
@@ -288,7 +292,10 @@ export function RuleEditor({ isOpen, onOpenChange, rule, onSave }: RuleEditorPro
 
                 <SheetFooter className="mt-auto pt-4">
                     <Button type="button" variant="ghost" onClick={() => onOpenChange(false)}>{t.shared.cancel}</Button>
-                    <Button type="submit">{t.rules.saveRule}</Button>
+                    <Button type="submit" disabled={isSaving || isParsing}>
+                      {isSaving ? <Loader2 className="mr-2 h-4 w-4 animate-spin" /> : null}
+                      {isSaving ? "Saving..." : t.rules.saveRule}
+                    </Button>
                 </SheetFooter>
             </form>
           </Form>

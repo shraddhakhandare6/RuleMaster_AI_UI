@@ -1,3 +1,4 @@
+
 import Link from "next/link"
 import {
   SidebarProvider,
@@ -9,7 +10,7 @@ import {
   SidebarInset,
   SidebarRail,
 } from "@/components/ui/sidebar"
-import { Bot } from "lucide-react"
+import { BrainCircuit } from "lucide-react"
 import { Nav } from "./nav"
 import { Button } from "../ui/button"
 import { ProfileButton } from "./profile-button"
@@ -23,12 +24,12 @@ export default async function AppLayout({ children }: Props) {
     <SidebarProvider>
       <Sidebar side="left" variant="sidebar" collapsible="icon">
         <SidebarHeader>
-          <Button variant="ghost" className="h-10 w-full justify-start gap-3 px-2">
-            <Bot className="size-6 text-logo" />
-            <span className="font-headline text-lg font-semibold text-sidebar-foreground hover:text-black">
+          <div className="flex h-10 w-full items-center justify-start gap-3 px-2">
+            <BrainCircuit className="size-6 text-logo" />
+            <span className="font-headline text-lg font-semibold text-logo">
               RuleMaster AI
             </span>
-          </Button>
+          </div>
         </SidebarHeader>
         <SidebarContent>
           <Nav />
