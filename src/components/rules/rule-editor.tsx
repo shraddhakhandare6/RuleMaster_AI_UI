@@ -168,7 +168,7 @@ export function RuleEditor({ isOpen, onOpenChange, rule, onSave }: RuleEditorPro
                   render={({ field }) => (
                     <FormItem>
                       <FormLabel>{t.rules.ruleName}</FormLabel>
-                      <FormControl><Input placeholder={t.rules.ruleNamePlaceholder} {...field} /></FormControl>
+                      <FormControl><Input placeholder={t.rules.ruleNamePlaceholder} {...field} value={field.value ?? ''} /></FormControl>
                       <FormMessage />
                     </FormItem>
                   )}
@@ -179,7 +179,7 @@ export function RuleEditor({ isOpen, onOpenChange, rule, onSave }: RuleEditorPro
                   render={({ field }) => (
                     <FormItem>
                       <FormLabel>{t.rules.priority}</FormLabel>
-                      <FormControl><Input type="number" {...field} /></FormControl>
+                      <FormControl><Input type="number" {...field} value={field.value ?? ''} /></FormControl>
                       <FormMessage />
                     </FormItem>
                   )}
@@ -211,7 +211,7 @@ export function RuleEditor({ isOpen, onOpenChange, rule, onSave }: RuleEditorPro
                             <FormItem>
                               <FormLabel>{t.rules.fact}</FormLabel>
                               <FormControl>
-                                <Input placeholder={t.rules.factPlaceholder} {...field} />
+                                <Input placeholder={t.rules.factPlaceholder} {...field} value={field.value ?? ''} />
                               </FormControl>
                               <FormMessage />
                             </FormItem>
@@ -224,7 +224,7 @@ export function RuleEditor({ isOpen, onOpenChange, rule, onSave }: RuleEditorPro
                             <FormItem>
                               <FormLabel>{t.rules.operator}</FormLabel>
                               <FormControl>
-                                <Input placeholder={t.rules.operatorPlaceholder} {...field} />
+                                <Input placeholder={t.rules.operatorPlaceholder} {...field} value={field.value ?? ''} />
                               </FormControl>
                               <FormMessage />
                             </FormItem>
@@ -237,7 +237,7 @@ export function RuleEditor({ isOpen, onOpenChange, rule, onSave }: RuleEditorPro
                             <FormItem>
                               <FormLabel>{t.rules.value}</FormLabel>
                               <FormControl>
-                                <Input placeholder={t.rules.valuePlaceholder} {...field} />
+                                <Input placeholder={t.rules.valuePlaceholder} {...field} value={field.value ?? ''} />
                               </FormControl>
                               <FormMessage />
                             </FormItem>
@@ -264,7 +264,7 @@ export function RuleEditor({ isOpen, onOpenChange, rule, onSave }: RuleEditorPro
                             <FormItem>
                               <FormLabel>{t.rules.action}</FormLabel>
                               <FormControl>
-                                <Input placeholder={t.rules.actionPlaceholder} {...field} />
+                                <Input placeholder={t.rules.actionPlaceholder} {...field} value={field.value ?? ''} />
                               </FormControl>
                               <FormMessage />
                             </FormItem>
