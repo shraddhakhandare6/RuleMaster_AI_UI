@@ -1,7 +1,6 @@
 
 "use client";
 
-import { useState } from "react";
 import { PageHeader } from "@/components/layout/page-header";
 import { StatsCards } from "@/components/dashboard/stats-cards";
 import { RecentActivity } from "@/components/dashboard/recent-activity";
@@ -11,7 +10,6 @@ import "@copilotkit/react-ui/styles.css";
 
 export default function DashboardPage() {
   const t = useTranslations();
-  const [isSidebarOpen, setIsSidebarOpen] = useState(true);
 
   const copilotLabels = {
     title: "RuleMaster AI Assistant",
@@ -20,21 +18,23 @@ export default function DashboardPage() {
 
   return (
     <>
-      <div className={`grid ${isSidebarOpen ? 'lg:grid-cols-[1fr_400px]' : 'lg:grid-cols-1'} gap-6 h-full`}>
-        <div className="space-y-6 overflow-y-auto">
-          <PageHeader title={t.dashboard.title} />
-          <StatsCards />
-          <RecentActivity />
-        </div>
-        <aside className="hidden lg:flex flex-col h-full">
-          <CopilotSidebar
-            defaultOpen={true}
-            onOpenChange={setIsSidebarOpen}
-            labels={copilotLabels}
-            className="[&>div]:shadow-none [&>div]:border-0 [&>div]:h-full"
-          />
-        </aside>
+      {/* The main dashboard content, which should always take up the full width of its container. */}
+      <div className="space-y-6">
+        <PageHeader title={t.dashboard.title} />
+        <StatsCards />
+        <RecentActivity />
       </div>
+
+      {/* On large screens, the sidebar will appear. It is rendered outside the main content flow,
+          so it will float on top and not affect the dashboard layout. */}
+      <div className="hidden lg:block">
+         <CopilotSidebar
+            defaultOpen={true}
+            labels={copilotLabels}
+          />
+      </div>
+      
+      {/* On small screens, a popup button will be used instead of the sidebar. */}
       <div className="lg:hidden">
         <CopilotPopup labels={copilotLabels} />
       </div>
