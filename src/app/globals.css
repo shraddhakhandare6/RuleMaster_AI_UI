@@ -8,7 +8,7 @@ body {
 
 @layer base {
   :root {
-    --background: 210 40% 98%;
+    --background: 0 0% 100%;
     --foreground: 222 47% 11%;
     --card: 0 0% 100%;
     --card-foreground: 222 47% 11%;
@@ -49,43 +49,43 @@ body {
   }
 
   .dark {
-    --background: 222 47% 11%;
+    --background: 0 0% 10%;
     --foreground: 0 0% 98%;
-    --card: 222 47% 11%;
+    --card: 0 0% 16%;
     --card-foreground: 0 0% 98%;
-    --popover: 222 47% 11%;
+    --popover: 0 0% 10%;
     --popover-foreground: 0 0% 98%;
-    --primary: 198 93% 60%;
-    --primary-foreground: 222 47% 11%;
-    --secondary: 217.2 32.6% 17.5%;
+    --primary: 300 100% 50%;
+    --primary-foreground: 0 0% 100%;
+    --secondary: 0 0% 22%;
     --secondary-foreground: 0 0% 98%;
-    --muted: 217.2 32.6% 17.5%;
+    --muted: 0 0% 22%;
     --muted-foreground: 215 20.2% 65.1%;
-    --accent: 217.2 32.6% 17.5%;
+    --accent: 180 100% 50%;
     --accent-foreground: 0 0% 98%;
     --destructive: 0 62.8% 30.6%;
     --destructive-foreground: 0 0% 98%;
-    --border: 217.2 32.6% 17.5%;
-    --input: 217.2 32.6% 17.5%;
-    --ring: 198 93% 60%;
+    --border: 0 0% 22%;
+    --input: 0 0% 16%;
+    --ring: 180 100% 50%;
 
-    --chart-1: 198 93% 60%;
-    --chart-2: 322 100% 50%;
+    --chart-1: 180 100% 50%;
+    --chart-2: 300 100% 50%;
     --chart-3: 0 0% 98%;
-    --chart-4: 217.2 32.6% 17.5%;
+    --chart-4: 0 0% 22%;
     --chart-5: 215 20.2% 65.1%;
 
-    --logo-color: 198 93% 60%;
+    --logo-color: 180 100% 50%;
 
     /* Sidebar theme for dark mode */
-    --sidebar-background: 222 47% 11%;
+    --sidebar-background: 0 0% 10%;
     --sidebar-foreground: 0 0% 98%;
-    --sidebar-primary: 198 93% 60%;
-    --sidebar-primary-foreground: 222 47% 11%;
-    --sidebar-accent: 198 93% 60%;
+    --sidebar-primary: 180 100% 50%;
+    --sidebar-primary-foreground: 0 0% 100%;
+    --sidebar-accent: 180 100% 50%;
     --sidebar-accent-foreground: 0 0% 98%;
-    --sidebar-border: 222 47% 15%;
-    --sidebar-ring: 198 93% 60%;
+    --sidebar-border: 0 0% 22%;
+    --sidebar-ring: 180 100% 50%;
   }
 }
 
