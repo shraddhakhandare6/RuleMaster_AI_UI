@@ -1,6 +1,7 @@
 
 "use client";
 
+import { useState } from "react";
 import { PageHeader } from "@/components/layout/page-header";
 import { StatsCards } from "@/components/dashboard/stats-cards";
 import { RecentActivity } from "@/components/dashboard/recent-activity";
@@ -10,6 +11,7 @@ import "@copilotkit/react-ui/styles.css";
 
 export default function DashboardPage() {
   const t = useTranslations();
+  const [isSidebarOpen, setIsSidebarOpen] = useState(true);
 
   const copilotLabels = {
     title: "RuleMaster AI Assistant",
@@ -18,7 +20,7 @@ export default function DashboardPage() {
 
   return (
     <>
-      <div className="grid lg:grid-cols-[1fr_400px] gap-6 h-full">
+      <div className={`grid ${isSidebarOpen ? 'lg:grid-cols-[1fr_400px]' : 'lg:grid-cols-1'} gap-6 h-full`}>
         <div className="space-y-6 overflow-y-auto">
           <PageHeader title={t.dashboard.title} />
           <StatsCards />
@@ -27,7 +29,7 @@ export default function DashboardPage() {
         <aside className="hidden lg:flex flex-col h-full">
           <CopilotSidebar
             defaultOpen={true}
-            clickOutsideToClose={false}
+            onOpenChange={setIsSidebarOpen}
             labels={copilotLabels}
             className="[&>div]:shadow-none [&>div]:border-0 [&>div]:h-full"
           />
