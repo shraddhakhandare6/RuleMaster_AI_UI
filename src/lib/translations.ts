@@ -234,7 +234,7 @@ export const translations: Record<string, Translation> = {
       settings: "Settings",
     },
     dashboard: {
-      title: "Welcome to RuleWise",
+      title: "Welcome to RuleMaster AI",
       stats: {
         totalRules: "Total Rules",
         totalRulesDesc: "All defined business rules",
@@ -453,7 +453,7 @@ export const translations: Record<string, Translation> = {
       settings: "Configuración",
     },
     dashboard: {
-      title: "Bienvenido a RuleWise",
+      title: "Bienvenido a RuleMaster AI",
        stats: {
         totalRules: "Reglas Totales",
         totalRulesDesc: "Todas las reglas de negocio definidas",
@@ -672,7 +672,7 @@ export const translations: Record<string, Translation> = {
       settings: "Paramètres",
     },
     dashboard: {
-      title: "Bienvenue chez RuleWise",
+      title: "Bienvenue chez RuleMaster AI",
       stats: {
         totalRules: "Total des Règles",
         totalRulesDesc: "Toutes les règles métier définies",
@@ -891,7 +891,7 @@ export const translations: Record<string, Translation> = {
       settings: "सेटिंग्स",
     },
     dashboard: {
-      title: "RuleWise में आपका स्वागत है",
+      title: "RuleMaster AI में आपका स्वागत है",
       stats: {
         totalRules: "कुल नियम",
         totalRulesDesc: "सभी परिभाषित व्यावसायिक नियम",
@@ -1110,7 +1110,7 @@ export const translations: Record<string, Translation> = {
       settings: "सेटिंग्ज",
     },
     dashboard: {
-      title: "RuleWise मध्ये आपले स्वागत आहे",
+      title: "RuleMaster AI मध्ये आपले स्वागत आहे",
       stats: {
         totalRules: "एकूण नियम",
         totalRulesDesc: "सर्व परिभाषित व्यवसाय नियम",
@@ -1329,7 +1329,7 @@ export const translations: Record<string, Translation> = {
       settings: "அமைப்புகள்",
     },
     dashboard: {
-      title: "RuleWise க்கு வரவேற்கிறோம்",
+      title: "RuleMaster AI க்கு வரவேற்கிறோம்",
       stats: {
         totalRules: "மொத்த விதிகள்",
         totalRulesDesc: "வரையறுக்கப்பட்ட அனைத்து வணிக விதிகளும்",
@@ -1548,7 +1548,7 @@ export const translations: Record<string, Translation> = {
       settings: "설정",
     },
      dashboard: {
-      title: "RuleWise에 오신 것을 환영합니다",
+      title: "RuleMaster AI에 오신 것을 환영합니다",
       stats: {
         totalRules: "총 규칙",
         totalRulesDesc: "정의된 모든 비즈니스 규칙",
@@ -1767,7 +1767,7 @@ export const translations: Record<string, Translation> = {
       settings: "设置",
     },
     dashboard: {
-      title: "欢迎来到RuleWise",
+      title: "欢迎来到RuleMaster AI",
       stats: {
         totalRules: "总规则",
         totalRulesDesc: "所有已定义的业务规则",

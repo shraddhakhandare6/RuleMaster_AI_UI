@@ -5,7 +5,7 @@ import { UserProvider } from "@/context/user-context"
 import { CopilotKit } from "@copilotkit/react-core";
 
 export const metadata: Metadata = {
-  title: "RuleWise Dashboard",
+  title: "RuleMaster AI Dashboard",
   description: "Manage your business rules with the power of AI.",
 };
 

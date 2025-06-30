@@ -23,8 +23,8 @@ export default function DashboardPage() {
           defaultOpen={true}
           clickOutsideToClose={false}
           labels={{
-            title: "RuleWise AI Assistant",
-            initial: "Hello! I'm the RuleWise AI assistant. How can I help you define or understand your business rules today?",
+            title: "RuleMaster AI Assistant",
+            initial: "Hello! I'm the RuleMaster AI assistant. How can I help you define or understand your business rules today?",
           }}
           className="[&>div]:shadow-none [&>div]:border-0 [&>div]:h-full"
         />
