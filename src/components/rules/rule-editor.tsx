@@ -25,12 +25,13 @@ import {
   FormLabel,
   FormMessage,
 } from "@/components/ui/form"
-import { Rule } from "@/lib/types"
+import { Rule, Group } from "@/lib/types"
 import { PlusCircle, Trash2, Wand2, Loader2 } from "lucide-react"
 import { Separator } from "@/components/ui/separator"
 import { useToast } from "@/hooks/use-toast"
 import { parseRuleWithAI } from "@/app/actions/rules"
 import { useTranslations } from "@/hooks/use-translations"
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
 
 const conditionSchema = z.object({
   id: z.string().optional(),
@@ -48,6 +49,7 @@ const ruleSchema = z.object({
   name: z.string().min(3, "Rule name is required."),
   description: z.string().optional(),
   priority: z.coerce.number().int().min(1, "Priority must be at least 1."),
+  tag: z.string().min(1, "Category is required."),
   conditions: z.array(conditionSchema).min(1, "At least one condition is required."),
   actions: z.array(actionSchema).min(1, "At least one action is required."),
   customCode: z.string().optional(),
@@ -60,9 +62,10 @@ type RuleEditorProps = {
   onOpenChange: (isOpen: boolean) => void
   onSave: (rule: Omit<Rule, 'id' | 'active'> & { id?: string }, naturalLanguage: string) => Promise<void>
   rule?: Partial<Rule>
+  groups: Group[]
 }
 
-export function RuleEditor({ isOpen, onOpenChange, rule, onSave }: RuleEditorProps) {
+export function RuleEditor({ isOpen, onOpenChange, rule, onSave, groups }: RuleEditorProps) {
   const t = useTranslations()
   const { toast } = useToast()
   const [naturalLanguage, setNaturalLanguage] = useState("")
@@ -75,12 +78,13 @@ export function RuleEditor({ isOpen, onOpenChange, rule, onSave }: RuleEditorPro
   
   useEffect(() => {
     if (isOpen) {
-      const defaultValues = rule
-      ? { ...rule, description: rule.description || "", customCode: rule.customCode || "" }
+      const defaultValues = rule?.id
+      ? { ...rule, description: rule.description || "", customCode: rule.customCode || "", tag: rule.tag || "" }
       : {
           name: "",
           description: "",
           priority: 1,
+          tag: "",
           conditions: [],
           actions: [],
           customCode: "",
@@ -161,7 +165,7 @@ export function RuleEditor({ isOpen, onOpenChange, rule, onSave }: RuleEditorPro
 
               <Separator />
 
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+              <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
                 <FormField
                   control={form.control}
                   name="name"
@@ -180,6 +184,30 @@ export function RuleEditor({ isOpen, onOpenChange, rule, onSave }: RuleEditorPro
                     <FormItem>
                       <FormLabel>{t.rules.priority}</FormLabel>
                       <FormControl><Input type="number" {...field} value={field.value ?? ''} /></FormControl>
+                      <FormMessage />
+                    </FormItem>
+                  )}
+                />
+                 <FormField
+                  control={form.control}
+                  name="tag"
+                  render={({ field }) => (
+                    <FormItem>
+                      <FormLabel>{t.rules.category}</FormLabel>
+                      <Select onValueChange={field.onChange} defaultValue={field.value}>
+                        <FormControl>
+                          <SelectTrigger>
+                            <SelectValue placeholder={t.rules.selectCategory} />
+                          </SelectTrigger>
+                        </FormControl>
+                        <SelectContent>
+                          {groups.map(group => (
+                            <SelectItem key={group.id} value={group.name}>
+                              {group.name}
+                            </SelectItem>
+                          ))}
+                        </SelectContent>
+                      </Select>
                       <FormMessage />
                     </FormItem>
                   )}

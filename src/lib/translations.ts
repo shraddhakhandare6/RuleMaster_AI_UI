@@ -73,6 +73,7 @@ type Translation = {
     areYouSure: string;
     cannotBeUndone: string;
     openMenu: string;
+    logout: string;
   };
   tenants: {
     title: string;
@@ -219,6 +220,9 @@ type Translation = {
     customCodeLabel: string;
     customCodePlaceholder: string;
     saveRule: string;
+    category: string;
+    selectCategory: string;
+    uncategorized: string;
   };
 };
 
@@ -297,6 +301,7 @@ export const translations: Record<string, Translation> = {
       areYouSure: "Are you sure?",
       cannotBeUndone: "This action cannot be undone.",
       openMenu: "Open menu",
+      logout: "Logout",
     },
     tenants: {
       title: "Tenants",
@@ -441,6 +446,9 @@ export const translations: Record<string, Translation> = {
       customCodeLabel: "Custom JS Code (Optional)",
       customCodePlaceholder: "Enter custom JavaScript logic here...",
       saveRule: "Save Rule",
+      category: "Category",
+      selectCategory: "Select a category",
+      uncategorized: "Uncategorized",
     },
   },
   es: {
@@ -516,6 +524,7 @@ export const translations: Record<string, Translation> = {
       areYouSure: "¿Estás seguro?",
       cannotBeUndone: "Esta acción no se puede deshacer.",
       openMenu: "Abrir menú",
+      logout: "Cerrar sesión",
     },
     tenants: {
       title: "Inquilinos",
@@ -660,6 +669,9 @@ export const translations: Record<string, Translation> = {
       customCodeLabel: "Código JS Personalizado (Opcional)",
       customCodePlaceholder: "Ingrese la lógica de JavaScript personalizada aquí...",
       saveRule: "Guardar Regla",
+      category: "Categoría",
+      selectCategory: "Seleccionar una categoría",
+      uncategorized: "Sin categoría",
     },
   },
   fr: {
@@ -735,6 +747,7 @@ export const translations: Record<string, Translation> = {
       areYouSure: "Êtes-vous sûr?",
       cannotBeUndone: "Cette action est irréversible.",
       openMenu: "Ouvrir le menu",
+      logout: "Déconnexion",
     },
     tenants: {
       title: "Locataires",
@@ -879,6 +892,9 @@ export const translations: Record<string, Translation> = {
       customCodeLabel: "Code JS Personnalisé (Optionnel)",
       customCodePlaceholder: "Entrez la logique JavaScript personnalisée ici...",
       saveRule: "Enregistrer la Règle",
+      category: "Catégorie",
+      selectCategory: "Sélectionner une catégorie",
+      uncategorized: "Non catégorisé",
     },
   },
   hi: {
@@ -954,6 +970,7 @@ export const translations: Record<string, Translation> = {
         areYouSure: "क्या आप निश्चित हैं?",
         cannotBeUndone: "यह कार्रवाई पूर्ववत नहीं की जा सकती।",
         openMenu: "मेनू खोलें",
+        logout: "लॉग आउट",
     },
     tenants: {
         title: "किरायेदार",
@@ -1098,6 +1115,9 @@ export const translations: Record<string, Translation> = {
       customCodeLabel: "कस्टम जेएस कोड (वैकल्पिक)",
       customCodePlaceholder: "यहां कस्टम जावास्क्रिप्ट तर्क दर्ज करें...",
       saveRule: "नियम सहेजें",
+      category: "श्रेणी",
+      selectCategory: "एक श्रेणी चुनें",
+      uncategorized: "अवर्गीकृत",
     },
   },
   mr: {
@@ -1173,6 +1193,7 @@ export const translations: Record<string, Translation> = {
       areYouSure: "तुम्ही निश्चित आहात का?",
       cannotBeUndone: "ही क्रिया पूर्ववत केली जाऊ शकत नाही.",
       openMenu: "मेनू उघडा",
+      logout: "लॉग आउट",
     },
     tenants: {
       title: "भाडेकरू",
@@ -1317,6 +1338,9 @@ export const translations: Record<string, Translation> = {
       customCodeLabel: "सानुकूल जेएस कोड (पर्यायी)",
       customCodePlaceholder: "येथे सानुकूल जावास्क्रिप्ट तर्क प्रविष्ट करा...",
       saveRule: "नियम जतन करा",
+      category: "श्रेणी",
+      selectCategory: "एक श्रेणी निवडा",
+      uncategorized: "अवर्गीकृत",
     },
   },
   ta: {
@@ -1392,6 +1416,7 @@ export const translations: Record<string, Translation> = {
       areYouSure: "நீங்கள் உறுதியாக இருக்கிறீர்களா?",
       cannotBeUndone: "இந்த செயலைச் செயல்தவிர்க்க முடியாது.",
       openMenu: "மெனுவைத் திற",
+      logout: "வெளியேறு",
     },
     tenants: {
       title: "குத்தகைதாரர்கள்",
@@ -1536,6 +1561,9 @@ export const translations: Record<string, Translation> = {
       customCodeLabel: "தனிப்பயன் JS குறியீடு (விருப்பமானது)",
       customCodePlaceholder: "தனிப்பயன் ஜாவாஸ்கிரிப்ட் தர்க்கத்தை இங்கே உள்ளிடவும்...",
       saveRule: "விதியைச் சேமி",
+      category: "வகை",
+      selectCategory: "ஒரு வகையைத் தேர்ந்தெடுக்கவும்",
+      uncategorized: "வகைப்படுத்தப்படாதது",
     },
   },
   ko: {
@@ -1611,6 +1639,7 @@ export const translations: Record<string, Translation> = {
         areYouSure: "확실합니까?",
         cannotBeUndone: "이 작업은 되돌릴 수 없습니다.",
         openMenu: "메뉴 열기",
+        logout: "로그아웃",
     },
     tenants: {
         title: "세입자",
@@ -1755,6 +1784,9 @@ export const translations: Record<string, Translation> = {
       customCodeLabel: "사용자 지정 JS 코드 (선택 사항)",
       customCodePlaceholder: "여기에 사용자 지정 JavaScript 논리를 입력하십시오...",
       saveRule: "규칙 저장",
+      category: "범주",
+      selectCategory: "범주를 선택하십시오",
+      uncategorized: "미분류",
     },
   },
   zh: {
@@ -1830,6 +1862,7 @@ export const translations: Record<string, Translation> = {
         areYouSure: "你确定吗？",
         cannotBeUndone: "此操作无法撤销。",
         openMenu: "打开菜单",
+        logout: "登出",
     },
     tenants: {
         title: "租户",
@@ -1974,6 +2007,9 @@ export const translations: Record<string, Translation> = {
       customCodeLabel: "自定义JS代码（可选）",
       customCodePlaceholder: "在此处输入自定义JavaScript逻辑...",
       saveRule: "保存规则",
+      category: "类别",
+      selectCategory: "选择一个类别",
+      uncategorized: "未分类",
     },
   },
 };

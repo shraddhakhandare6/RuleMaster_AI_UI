@@ -21,10 +21,17 @@ export default function SettingsPage() {
   const { theme, setTheme } = useTheme();
   const [mounted, setMounted] = useState(false);
   
-  const { firstName, setFirstName, language, setLanguage } = useUser();
+  const { 
+    firstName, setFirstName, 
+    lastName, setLastName,
+    email, setEmail,
+    language, setLanguage 
+  } = useUser();
   const t = useTranslations();
 
   const [localFirstName, setLocalFirstName] = useState(firstName);
+  const [localLastName, setLocalLastName] = useState(lastName);
+  const [localEmail, setLocalEmail] = useState(email);
   const [localLanguage, setLocalLanguage] = useState<LanguageKey>(language);
 
   useEffect(() => {
@@ -33,7 +40,9 @@ export default function SettingsPage() {
 
   useEffect(() => {
     setLocalFirstName(firstName);
-  }, [firstName]);
+    setLocalLastName(lastName);
+    setLocalEmail(email);
+  }, [firstName, lastName, email]);
 
   useEffect(() => {
     setLocalLanguage(language);
@@ -43,6 +52,8 @@ export default function SettingsPage() {
   const handleSave = (type: 'profile' | 'preferences') => {
     if (type === 'profile') {
       setFirstName(localFirstName);
+      setLastName(localLastName);
+      setEmail(localEmail);
        toast({
         title: t.settings.settingsSaved,
         description: t.settings.settingsUpdated(t.settings.profileSettings),
@@ -80,12 +91,21 @@ export default function SettingsPage() {
               </div>
               <div className="space-y-2">
                 <Label htmlFor="last-name">{t.settings.lastName}</Label>
-                <Input id="last-name" defaultValue="User" />
+                <Input 
+                  id="last-name" 
+                  value={localLastName}
+                  onChange={(e) => setLocalLastName(e.target.value)}
+                />
               </div>
             </div>
             <div className="space-y-2">
               <Label htmlFor="email">{t.settings.email}</Label>
-              <Input id="email" type="email" defaultValue="admin@rulewise.app" />
+              <Input 
+                id="email" 
+                type="email" 
+                value={localEmail}
+                onChange={(e) => setLocalEmail(e.target.value)}
+              />
             </div>
           </CardContent>
           <CardFooter>

@@ -48,7 +48,7 @@ export async function createRule(ruleData: any, naturalLanguageRule: string) {
     tenantId: "test",
     userId: "saad",
     naturalLanguageRule,
-    tag: "Customer",
+    tag: ruleData.tag,
     name: ruleData.name,
     description: ruleData.description,
     createdBy: "saad",
@@ -90,7 +90,7 @@ export async function updateRule(ruleId: string, ruleData: any, naturalLanguageR
                 all: ruleData.conditions.map(({ id, ...rest }: {id?: string}) => rest)
             }
         },
-        tag: "Sales",
+        tag: ruleData.tag,
         name: ruleData.name,
         description: ruleData.description,
         createdBy:"saad"

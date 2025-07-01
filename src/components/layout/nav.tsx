@@ -9,7 +9,6 @@ import {
 import {
   LayoutDashboard,
   ListChecks,
-  Building,
   Users,
   Settings,
   Users2,
@@ -21,7 +20,6 @@ import { useTranslations } from "@/hooks/use-translations"
 const navLinks = [
   { href: "/dashboard", icon: LayoutDashboard, labelKey: "dashboard" },
   { href: "/rules", icon: ListChecks, labelKey: "rules" },
-  { href: "/tenants", icon: Building, labelKey: "tenants" },
   { href: "/users", icon: Users, labelKey: "users" },
   { href: "/groups", icon: Users2, labelKey: "groups" },
   { href: "/settings", icon: Settings, labelKey: "settings" },

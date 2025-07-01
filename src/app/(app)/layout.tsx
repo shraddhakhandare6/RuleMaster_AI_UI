@@ -9,7 +9,7 @@ export const metadata: Metadata = {
   description: "Manage your business rules with the power of AI.",
 };
 
-const runtimeUrl = process.env.NEXT_PUBLIC_COPILOTKIT_RUNTIME_URL
+const runtimeUrl = process.env.NEXT_PUBLIC_COPILOTKIT_RUNTIME_URL || "/api/copilotkit";
 const publicApiKey = process.env.NEXT_PUBLIC_COPILOT_API_KEY;
 const agentName = process.env.NEXT_PUBLIC_COPILOTKIT_AGENT_NAME
 
