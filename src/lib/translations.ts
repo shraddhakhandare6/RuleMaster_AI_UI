@@ -73,6 +73,7 @@ type Translation = {
     areYouSure: string;
     cannotBeUndone: string;
     openMenu: string;
+    logout: string;
   };
   tenants: {
     title: string;
@@ -300,6 +301,7 @@ export const translations: Record<string, Translation> = {
       areYouSure: "Are you sure?",
       cannotBeUndone: "This action cannot be undone.",
       openMenu: "Open menu",
+      logout: "Logout",
     },
     tenants: {
       title: "Tenants",
@@ -522,6 +524,7 @@ export const translations: Record<string, Translation> = {
       areYouSure: "¿Estás seguro?",
       cannotBeUndone: "Esta acción no se puede deshacer.",
       openMenu: "Abrir menú",
+      logout: "Cerrar sesión",
     },
     tenants: {
       title: "Inquilinos",
@@ -744,6 +747,7 @@ export const translations: Record<string, Translation> = {
       areYouSure: "Êtes-vous sûr?",
       cannotBeUndone: "Cette action est irréversible.",
       openMenu: "Ouvrir le menu",
+      logout: "Déconnexion",
     },
     tenants: {
       title: "Locataires",
@@ -966,6 +970,7 @@ export const translations: Record<string, Translation> = {
         areYouSure: "क्या आप निश्चित हैं?",
         cannotBeUndone: "यह कार्रवाई पूर्ववत नहीं की जा सकती।",
         openMenu: "मेनू खोलें",
+        logout: "लॉग आउट",
     },
     tenants: {
         title: "किरायेदार",
@@ -1188,6 +1193,7 @@ export const translations: Record<string, Translation> = {
       areYouSure: "तुम्ही निश्चित आहात का?",
       cannotBeUndone: "ही क्रिया पूर्ववत केली जाऊ शकत नाही.",
       openMenu: "मेनू उघडा",
+      logout: "लॉग आउट",
     },
     tenants: {
       title: "भाडेकरू",
@@ -1410,6 +1416,7 @@ export const translations: Record<string, Translation> = {
       areYouSure: "நீங்கள் உறுதியாக இருக்கிறீர்களா?",
       cannotBeUndone: "இந்த செயலைச் செயல்தவிர்க்க முடியாது.",
       openMenu: "மெனுவைத் திற",
+      logout: "வெளியேறு",
     },
     tenants: {
       title: "குத்தகைதாரர்கள்",
@@ -1632,6 +1639,7 @@ export const translations: Record<string, Translation> = {
         areYouSure: "확실합니까?",
         cannotBeUndone: "이 작업은 되돌릴 수 없습니다.",
         openMenu: "메뉴 열기",
+        logout: "로그아웃",
     },
     tenants: {
         title: "세입자",
@@ -1854,6 +1862,7 @@ export const translations: Record<string, Translation> = {
         areYouSure: "你确定吗？",
         cannotBeUndone: "此操作无法撤销。",
         openMenu: "打开菜单",
+        logout: "登出",
     },
     tenants: {
         title: "租户",
