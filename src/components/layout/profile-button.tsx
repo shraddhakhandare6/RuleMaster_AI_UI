@@ -16,7 +16,7 @@ import {
 import { useTranslations } from "@/hooks/use-translations";
 
 export function ProfileButton() {
-  const { firstName } = useUser();
+  const { firstName, lastName, email } = useUser();
   const router = useRouter();
   const t = useTranslations();
 
@@ -32,15 +32,15 @@ export function ProfileButton() {
           className="h-10 w-full justify-start gap-3 px-2 hover:bg-sidebar-accent hover:text-sidebar-accent-foreground"
         >
           <UserCircle className="size-6" />
-          <span className="truncate">{firstName}</span>
+          <span className="truncate">{`${firstName} ${lastName}`}</span>
         </Button>
       </DropdownMenuTrigger>
       <DropdownMenuContent className="w-56" align="end" forceMount>
         <DropdownMenuLabel className="font-normal">
           <div className="flex flex-col space-y-1">
-            <p className="text-sm font-medium leading-none">{firstName}</p>
+            <p className="text-sm font-medium leading-none">{`${firstName} ${lastName}`}</p>
             <p className="text-xs leading-none text-muted-foreground">
-              admin@rulewise.app
+              {email}
             </p>
           </div>
         </DropdownMenuLabel>

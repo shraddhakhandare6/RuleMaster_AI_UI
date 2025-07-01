@@ -6,6 +6,10 @@ import type { LanguageKey } from '@/lib/translations';
 type UserContextType = {
   firstName: string;
   setFirstName: (name: string) => void;
+  lastName: string;
+  setLastName: (name: string) => void;
+  email: string;
+  setEmail: (email: string) => void;
   language: LanguageKey;
   setLanguage: (language: LanguageKey) => void;
 };
@@ -13,11 +17,18 @@ type UserContextType = {
 const UserContext = createContext<UserContextType | undefined>(undefined);
 
 export function UserProvider({ children }: { children: ReactNode }) {
-  const [firstName, setFirstName] = useState('Shraddha'); // Default value
+  const [firstName, setFirstName] = useState('Shraddha');
+  const [lastName, setLastName] = useState('User');
+  const [email, setEmail] = useState('admin@rulewise.app');
   const [language, setLanguage] = useState<LanguageKey>('en');
 
   return (
-    <UserContext.Provider value={{ firstName, setFirstName, language, setLanguage }}>
+    <UserContext.Provider value={{ 
+      firstName, setFirstName, 
+      lastName, setLastName,
+      email, setEmail,
+      language, setLanguage 
+    }}>
       {children}
     </UserContext.Provider>
   );
