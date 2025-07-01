@@ -219,6 +219,9 @@ type Translation = {
     customCodeLabel: string;
     customCodePlaceholder: string;
     saveRule: string;
+    category: string;
+    selectCategory: string;
+    uncategorized: string;
   };
 };
 
@@ -441,6 +444,9 @@ export const translations: Record<string, Translation> = {
       customCodeLabel: "Custom JS Code (Optional)",
       customCodePlaceholder: "Enter custom JavaScript logic here...",
       saveRule: "Save Rule",
+      category: "Category",
+      selectCategory: "Select a category",
+      uncategorized: "Uncategorized",
     },
   },
   es: {
@@ -660,6 +666,9 @@ export const translations: Record<string, Translation> = {
       customCodeLabel: "Código JS Personalizado (Opcional)",
       customCodePlaceholder: "Ingrese la lógica de JavaScript personalizada aquí...",
       saveRule: "Guardar Regla",
+      category: "Categoría",
+      selectCategory: "Seleccionar una categoría",
+      uncategorized: "Sin categoría",
     },
   },
   fr: {
@@ -879,6 +888,9 @@ export const translations: Record<string, Translation> = {
       customCodeLabel: "Code JS Personnalisé (Optionnel)",
       customCodePlaceholder: "Entrez la logique JavaScript personnalisée ici...",
       saveRule: "Enregistrer la Règle",
+      category: "Catégorie",
+      selectCategory: "Sélectionner une catégorie",
+      uncategorized: "Non catégorisé",
     },
   },
   hi: {
@@ -1098,6 +1110,9 @@ export const translations: Record<string, Translation> = {
       customCodeLabel: "कस्टम जेएस कोड (वैकल्पिक)",
       customCodePlaceholder: "यहां कस्टम जावास्क्रिप्ट तर्क दर्ज करें...",
       saveRule: "नियम सहेजें",
+      category: "श्रेणी",
+      selectCategory: "एक श्रेणी चुनें",
+      uncategorized: "अवर्गीकृत",
     },
   },
   mr: {
@@ -1317,6 +1332,9 @@ export const translations: Record<string, Translation> = {
       customCodeLabel: "सानुकूल जेएस कोड (पर्यायी)",
       customCodePlaceholder: "येथे सानुकूल जावास्क्रिप्ट तर्क प्रविष्ट करा...",
       saveRule: "नियम जतन करा",
+      category: "श्रेणी",
+      selectCategory: "एक श्रेणी निवडा",
+      uncategorized: "अवर्गीकृत",
     },
   },
   ta: {
@@ -1536,6 +1554,9 @@ export const translations: Record<string, Translation> = {
       customCodeLabel: "தனிப்பயன் JS குறியீடு (விருப்பமானது)",
       customCodePlaceholder: "தனிப்பயன் ஜாவாஸ்கிரிப்ட் தர்க்கத்தை இங்கே உள்ளிடவும்...",
       saveRule: "விதியைச் சேமி",
+      category: "வகை",
+      selectCategory: "ஒரு வகையைத் தேர்ந்தெடுக்கவும்",
+      uncategorized: "வகைப்படுத்தப்படாதது",
     },
   },
   ko: {
@@ -1755,6 +1776,9 @@ export const translations: Record<string, Translation> = {
       customCodeLabel: "사용자 지정 JS 코드 (선택 사항)",
       customCodePlaceholder: "여기에 사용자 지정 JavaScript 논리를 입력하십시오...",
       saveRule: "규칙 저장",
+      category: "범주",
+      selectCategory: "범주를 선택하십시오",
+      uncategorized: "미분류",
     },
   },
   zh: {
@@ -1974,6 +1998,9 @@ export const translations: Record<string, Translation> = {
       customCodeLabel: "自定义JS代码（可选）",
       customCodePlaceholder: "在此处输入自定义JavaScript逻辑...",
       saveRule: "保存规则",
+      category: "类别",
+      selectCategory: "选择一个类别",
+      uncategorized: "未分类",
     },
   },
 };

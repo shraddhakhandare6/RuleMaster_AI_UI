@@ -17,6 +17,7 @@ export type Rule = {
   description: string;
   priority: number;
   active: boolean;
+  tag: string;
   conditions: RuleCondition[];
   actions: RuleAction[];
   customCode?: string;

@@ -2,7 +2,7 @@
 "use client"
 
 import { useState } from "react"
-import type { Rule } from "@/lib/types"
+import type { Rule, Group } from "@/lib/types"
 import { PageHeader } from "@/components/layout/page-header"
 import { Button } from "@/components/ui/button"
 import { Plus, MoreHorizontal } from "lucide-react"
@@ -23,17 +23,19 @@ import {
   DropdownMenuItem,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu"
-import { Card, CardContent } from "@/components/ui/card"
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { useToast } from "@/hooks/use-toast"
 import { ConfirmationDialog } from "@/components/shared/confirmation-dialog"
 import { useTranslations } from "@/hooks/use-translations"
 import { createRule, updateRule } from "@/app/actions/rules"
+import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion"
 
 type RulesClientProps = {
-  initialRules: Rule[]
+  initialRules: Rule[],
+  initialGroups: Group[],
 }
 
-export function RulesClient({ initialRules }: RulesClientProps) {
+export function RulesClient({ initialRules, initialGroups }: RulesClientProps) {
   const t = useTranslations()
   const { toast } = useToast()
   const [rules, setRules] = useState<Rule[]>(initialRules)
@@ -114,6 +116,80 @@ export function RulesClient({ initialRules }: RulesClientProps) {
     setRules(rules.map(r => r.id === ruleId ? {...r, active: !r.active} : r));
   }
 
+  const groupedRules = initialGroups
+    .map(group => ({
+      ...group,
+      rules: rules.filter(rule => rule.tag === group.name)
+    }))
+    .filter(group => group.rules.length > 0)
+    .sort((a, b) => a.name.localeCompare(b.name));
+
+  const uncategorizedRules = rules.filter(rule => !initialGroups.some(g => g.name === rule.tag));
+
+  const renderRuleTable = (rulesToRender: Rule[]) => (
+    <Table>
+      <TableHeader>
+        <TableRow>
+          <TableHead className="w-[30%]">{t.rules.rule}</TableHead>
+          <TableHead>{t.rules.priority}</TableHead>
+          <TableHead>{t.rules.status}</TableHead>
+          <TableHead>{t.shared.actions}</TableHead>
+        </TableRow>
+      </TableHeader>
+      <TableBody>
+        {rulesToRender.map((rule) => (
+          <TableRow key={rule.id}>
+            <TableCell>
+              <div className="font-medium">{rule.name}</div>
+              <div className="text-sm text-muted-foreground">
+                {rule.description}
+              </div>
+            </TableCell>
+            <TableCell>
+              <Badge variant="secondary">{rule.priority}</Badge>
+            </TableCell>
+            <TableCell>
+              <div className="flex items-center space-x-2">
+                <Switch
+                  checked={rule.active}
+                  onCheckedChange={() => toggleRuleStatus(rule.id)}
+                  aria-label="Toggle rule status"
+                />
+                  <span className={`text-sm font-medium ${rule.active ? 'text-green-600' : 'text-muted-foreground'}`}>
+                  {rule.active ? t.rules.active : t.rules.inactive}
+                </span>
+              </div>
+            </TableCell>
+            <TableCell>
+              <DropdownMenu>
+                <DropdownMenuTrigger asChild>
+                  <Button variant="ghost" className="h-8 w-8 p-0">
+                    <span className="sr-only">{t.shared.openMenu}</span>
+                    <MoreHorizontal className="h-4 w-4" />
+                  </Button>
+                </DropdownMenuTrigger>
+                <DropdownMenuContent align="end">
+                  <DropdownMenuItem onClick={() => handleEdit(rule)}>
+                    {t.rules.edit}
+                  </DropdownMenuItem>
+                  <DropdownMenuItem onClick={() => handleDuplicate(rule)}>
+                    {t.rules.duplicate}
+                  </DropdownMenuItem>
+                  <DropdownMenuItem 
+                    className="text-destructive focus:text-destructive"
+                    onClick={() => openDeleteConfirm(rule)}
+                  >
+                    {t.rules.delete}
+                  </DropdownMenuItem>
+                </DropdownMenuContent>
+              </DropdownMenu>
+            </TableCell>
+          </TableRow>
+        ))}
+      </TableBody>
+    </Table>
+  );
+
   return (
     <>
       <PageHeader title={t.rules.title}>
@@ -122,78 +198,46 @@ export function RulesClient({ initialRules }: RulesClientProps) {
           {t.rules.createRule}
         </Button>
       </PageHeader>
-
-      <Card>
-        <CardContent className="p-0">
-          <Table>
-            <TableHeader>
-              <TableRow>
-                <TableHead className="w-[30%]">{t.rules.rule}</TableHead>
-                <TableHead>{t.rules.priority}</TableHead>
-                <TableHead>{t.rules.status}</TableHead>
-                <TableHead>{t.shared.actions}</TableHead>
-              </TableRow>
-            </TableHeader>
-            <TableBody>
-              {rules.map((rule) => (
-                <TableRow key={rule.id}>
-                  <TableCell>
-                    <div className="font-medium">{rule.name}</div>
-                    <div className="text-sm text-muted-foreground">
-                      {rule.description}
-                    </div>
-                  </TableCell>
-                  <TableCell>
-                    <Badge variant="secondary">{rule.priority}</Badge>
-                  </TableCell>
-                  <TableCell>
-                    <div className="flex items-center space-x-2">
-                      <Switch
-                        checked={rule.active}
-                        onCheckedChange={() => toggleRuleStatus(rule.id)}
-                        aria-label="Toggle rule status"
-                      />
-                       <span className={`text-sm font-medium ${rule.active ? 'text-green-600' : 'text-muted-foreground'}`}>
-                        {rule.active ? t.rules.active : t.rules.inactive}
-                      </span>
-                    </div>
-                  </TableCell>
-                  <TableCell>
-                    <DropdownMenu>
-                      <DropdownMenuTrigger asChild>
-                        <Button variant="ghost" className="h-8 w-8 p-0">
-                          <span className="sr-only">{t.shared.openMenu}</span>
-                          <MoreHorizontal className="h-4 w-4" />
-                        </Button>
-                      </DropdownMenuTrigger>
-                      <DropdownMenuContent align="end">
-                        <DropdownMenuItem onClick={() => handleEdit(rule)}>
-                          {t.rules.edit}
-                        </DropdownMenuItem>
-                        <DropdownMenuItem onClick={() => handleDuplicate(rule)}>
-                          {t.rules.duplicate}
-                        </DropdownMenuItem>
-                        <DropdownMenuItem 
-                          className="text-destructive focus:text-destructive"
-                          onClick={() => openDeleteConfirm(rule)}
-                        >
-                          {t.rules.delete}
-                        </DropdownMenuItem>
-                      </DropdownMenuContent>
-                    </DropdownMenu>
-                  </TableCell>
-                </TableRow>
-              ))}
-            </TableBody>
-          </Table>
-        </CardContent>
-      </Card>
       
+      <div className="space-y-4">
+        <Accordion type="multiple" defaultValue={groupedRules.map(g => g.name)} className="w-full space-y-4">
+          {groupedRules.map(group => (
+            <AccordionItem value={group.name} key={group.id} className="border-none">
+              <Card>
+                  <AccordionTrigger className="p-6 hover:no-underline">
+                    <div className="flex flex-1 items-center justify-between">
+                      <div className="flex items-center gap-4">
+                        <h2 className="text-lg font-semibold">{group.name}</h2>
+                        <Badge variant="secondary">{group.rules.length} {group.rules.length === 1 ? t.rules.rule.toLowerCase() : t.rules.title.toLowerCase()}</Badge>
+                      </div>
+                    </div>
+                  </AccordionTrigger>
+                  <AccordionContent className="p-0">
+                    {renderRuleTable(group.rules)}
+                  </AccordionContent>
+              </Card>
+            </AccordionItem>
+          ))}
+        </Accordion>
+
+        {uncategorizedRules.length > 0 && (
+          <Card>
+            <CardHeader>
+              <CardTitle>{t.rules.uncategorized}</CardTitle>
+            </CardHeader>
+            <CardContent className="p-0">
+              {renderRuleTable(uncategorizedRules)}
+            </CardContent>
+          </Card>
+        )}
+      </div>
+
       <RuleEditor
         isOpen={isEditorOpen}
         onOpenChange={setIsEditorOpen}
         rule={selectedRule}
         onSave={handleSaveRule}
+        groups={initialGroups}
       />
 
       <ConfirmationDialog
